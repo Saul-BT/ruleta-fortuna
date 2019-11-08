@@ -14,24 +14,8 @@ public class Panel {
 
     public Panel(MainActivity activity, String frase) {
         this.activity = activity;
+        this.celdas =  new ArrayList<>();
         this.frase = frase.toUpperCase();
-    }
-
-    public void generaCeldas() throws Exception {
-        if (this.frase.isEmpty() || this.frase.length() >= MAX_LETRAS)
-            throw new Exception("La frase es inválida");
-
-        String[] caracteres = this.frase.split("");
-        ArrayList<TextView> celdas = new ArrayList<>();
-
-        for (int i = 0; i < MAX_LETRAS; i++) {
-            if (i >= caracteres.length) {
-                celdas.add(Celda.valueOf(this.activity, " "));
-                continue;
-            }
-            celdas.add(Celda.valueOf(this.activity, caracteres[i]));
-        }
-        this.celdas = celdas;
     }
 
 
@@ -42,21 +26,35 @@ public class Panel {
 
         for (TextView celda : this.celdas)
             if (celda.getText().toString().equals(letra))
-                Celda.mostrar(celda);
+                celda.setTextColor(Color.parseColor("#555555"));
 
         return true;
     }
 
 
-    public boolean rellenaPanel(TableLayout contenedor) {
-        int nHijos = contenedor.getChildCount();
-        int nChars = this.frase.length();
+    public void rellenaPanel(TableLayout contenedor) throws Exception {
+        if (this.frase.isEmpty() || this.frase.length() >= MAX_LETRAS)
+            throw new Exception("La frase es inválida");
 
-        for (int i = 0, n = 0; i < nHijos; i++) {
-            for (int j = 0; j < 12; j++, n++) {
-                ((TableRow) contenedor.getChildAt(i)).addView(celdas.get(n));
+        char[] caracteres = String.format("%-"+MAX_LETRAS+"s", this.frase).toCharArray();
+        int nFilas = contenedor.getChildCount();
+
+        for (int i = 0, n = 0; i < nFilas; i++) {
+            TableRow row = (TableRow) contenedor.getChildAt(i);
+            int nCeldas = row.getChildCount();
+
+            for (int j = 0; j < nCeldas; j++, n++) {
+                TextView celda = (TextView) row.getChildAt(j);
+
+                if (caracteres[n] != ' ')
+                    celda.setBackground(this.activity.getResources().getDrawable(R.drawable.rounded_celda_con_letra));
+
+                celda.setText(String.valueOf(caracteres[n]));
+                this.celdas.add(celda);
             }
         }
-        return true;
+
+        revelaLetras(",");
+        revelaLetras(".");
     }
 }
