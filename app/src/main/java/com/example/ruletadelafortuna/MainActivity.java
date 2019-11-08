@@ -53,14 +53,13 @@ public class MainActivity extends AppCompatActivity {
         b_Start = findViewById(R.id.bTiraRuleta);
         RuletaImg = findViewById(R.id.RuletaImagen);
 
-        String fraseDePrueba = "Lorem ipsum dolor sit amet, lorem y tal";
+        String fraseDePrueba = "Lorem ipsum dolor sit ámet, lorem y tal";
         Panel p = new Panel(this, fraseDePrueba);
         try {
             p.rellenaPanel((TableLayout) findViewById(R.id.tlPanel));
             char[] chars = fraseDePrueba.toUpperCase().toCharArray();
 
-            for (int i = 0; i < chars.length; i++)
-                p.revelaLetras(String.valueOf(chars[i]));
+            p.revelaLetra("A");
 
             Log.i("AAAA", "GUAY");
         } catch (Exception e) {

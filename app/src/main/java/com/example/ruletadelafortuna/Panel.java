@@ -4,6 +4,8 @@ import android.graphics.Color;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
+
+import java.text.Collator;
 import java.util.ArrayList;
 
 public class Panel {
@@ -19,14 +21,18 @@ public class Panel {
     }
 
 
-    public boolean revelaLetras(String letra) {
+    public boolean revelaLetra(String letra) {
         if (!this.frase.contains(letra)) return false;
 
         letra = letra.toUpperCase();
+        Collator espCollator = Collator.getInstance();
+        espCollator.setStrength(Collator.PRIMARY);
 
-        for (TextView celda : this.celdas)
-            if (celda.getText().toString().equals(letra))
+        for (TextView celda : this.celdas) {
+            String letraCelda = celda.getText().toString();
+            if (espCollator.compare(letraCelda, letra) == 0)
                 celda.setTextColor(Color.parseColor("#555555"));
+        }
 
         return true;
     }
@@ -54,7 +60,7 @@ public class Panel {
             }
         }
 
-        revelaLetras(",");
-        revelaLetras(".");
+        revelaLetra(",");
+        revelaLetra(".");
     }
 }
