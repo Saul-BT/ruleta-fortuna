@@ -4,5 +4,6 @@
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
     <color name="backgroundColor">#FFFFFF</color>
+    <color name="colorCeldaVacia">#3B4779</color>
     <color name="colorCeldaConLetra">#ACACAC</color>
 </resources>

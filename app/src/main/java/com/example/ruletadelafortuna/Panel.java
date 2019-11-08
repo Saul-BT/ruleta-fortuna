@@ -1,8 +1,6 @@
 package com.example.ruletadelafortuna;
 
 import android.graphics.Color;
-import android.util.Log;
-import android.view.View;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -26,32 +24,33 @@ public class Panel {
         String[] caracteres = this.frase.split("");
         ArrayList<TextView> celdas = new ArrayList<>();
 
-        for (String caracter : caracteres) {
-            TextView celda = (TextView) this.activity.getLayoutInflater().inflate(R.layout.celda_panel, null);
-            if (!caracter.equals(" ")) {
-                celda.setTextColor(Color.parseColor("red"));
-                celda.setBackgroundColor(activity.getResources().getColor(R.color.colorCeldaConLetra));
+        for (int i = 0; i < MAX_LETRAS; i++) {
+            if (i >= caracteres.length) {
+                celdas.add(Celda.valueOf(this.activity, " "));
+                continue;
             }
-            celda.setText(caracter);
-
-            celdas.add(celda);
+            celdas.add(Celda.valueOf(this.activity, caracteres[i]));
         }
         this.celdas = celdas;
     }
+
 
     public boolean revelaLetras(String letra) {
         if (!this.frase.contains(letra)) return false;
 
         letra = letra.toUpperCase();
+
         for (TextView celda : this.celdas)
             if (celda.getText().toString().equals(letra))
-                celda.setTextColor(Color.parseColor("black"));
+                Celda.mostrar(celda);
 
         return true;
     }
 
+
     public boolean rellenaPanel(TableLayout contenedor) {
         int nHijos = contenedor.getChildCount();
+        int nChars = this.frase.length();
 
         for (int i = 0, n = 0; i < nHijos; i++) {
             for (int j = 0; j < 12; j++, n++) {

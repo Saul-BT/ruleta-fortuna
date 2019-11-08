@@ -40,7 +40,7 @@
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="409dp"
-        android:layout_height="70dp"
+        android:layout_height="60dp"
         android:background="#59A2AD"
         android:gravity="center"
         android:orientation="vertical"
@@ -56,13 +56,6 @@
             android:textAlignment="center"
             android:textSize="24sp" />
 
-        <TextView
-            android:id="@+id/tvBote"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Bote"
-            android:textAlignment="center"
-            android:textColor="#00FF03" />
     </LinearLayout>
 
     <TableLayout

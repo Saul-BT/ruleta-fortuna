@@ -53,11 +53,12 @@ public class MainActivity extends AppCompatActivity {
         b_Start = findViewById(R.id.bTiraRuleta);
         RuletaImg = findViewById(R.id.RuletaImagen);
 
-        Panel p = new Panel(this, "lo he abierto con chrome que te lo traduce guay");
+        Panel p = new Panel(this, "Tu mama me mima");
         try {
             p.generaCeldas();
             p.rellenaPanel((TableLayout) findViewById(R.id.tlPanel));
             p.revelaLetras("A");
+            p.revelaLetras("B");
             Log.i("AAAA", "GUAY");
         } catch (Exception e) {
             Log.i("AAAA", e.toString());
