@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.animation.DecelerateInterpolator;
 import android.view.animation.RotateAnimation;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TableLayout;
 import android.widget.Toast;
@@ -17,7 +18,7 @@ import java.util.Random;
 public class MainActivity extends AppCompatActivity {
 
     int grados = 0;
-    Button b_Start;
+    ImageButton b_Start;
     ImageView RuletaImg;
     // Pasar a enum
     Object[] gajos = {
@@ -53,13 +54,19 @@ public class MainActivity extends AppCompatActivity {
         b_Start = findViewById(R.id.bTiraRuleta);
         RuletaImg = findViewById(R.id.RuletaImagen);
 
-        String fraseDePrueba = "Lorem ipsum dolor sit ámet, lorem y tal";
+        String fraseDePrueba = "Si no cagas en el baño, algo haces muy mal";
         Panel p = new Panel(this, fraseDePrueba);
         try {
             p.rellenaPanel((TableLayout) findViewById(R.id.tlPanel));
             char[] chars = fraseDePrueba.toUpperCase().toCharArray();
 
             p.revelaLetra("A");
+            p.revelaLetra("S");
+            p.revelaLetra("L");
+            p.revelaLetra("M");
+            p.revelaLetra("R");
+            p.revelaLetra("G");
+            p.revelaLetra("C");
 
             Log.i("AAAA", "GUAY");
         } catch (Exception e) {
@@ -68,7 +75,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onClickButtonRotation(View v){
-        int ran = new Random().nextInt(360) + 360;
+        int ran = new Random().nextInt(360) + 360 * 2;
         RotateAnimation rotateAnimation = new RotateAnimation(
                 this.grados,
                 this.grados + ran,
