@@ -5,24 +5,41 @@ import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 
+import java.lang.reflect.Array;
 import java.text.Collator;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Random;
 
 public class Panel {
+    private String fraseActual;
+    private String pistaActual;
+
     private final int MAX_LETRAS = 48;
     private MainActivity activity;
-    private ArrayList<TextView> celdas;
-    private String frase;
+    private List<TextView> celdas;
 
-    public Panel(MainActivity activity, String frase) {
+    private static List<String> frases;
+    private static List<String> pistas;
+
+    public Panel(MainActivity activity) {
         this.activity = activity;
         this.celdas =  new ArrayList<>();
-        this.frase = frase.toUpperCase();
+
+        this.frases = new LinkedList<String>(Arrays.asList(
+                this.activity.getResources().getStringArray(R.array.frases)));
+        this.pistas = new LinkedList<String>(Arrays.asList(
+                this.activity.getResources().getStringArray(R.array.pistas)));
+
+        generaFraseYPista();
     }
 
 
     public boolean revelaLetra(String letra) {
-        if (!this.frase.contains(letra)) return false;
+        if (!this.fraseActual.contains(letra)) return false;
 
         letra = letra.toUpperCase();
         Collator espCollator = Collator.getInstance();
@@ -33,16 +50,15 @@ public class Panel {
             if (espCollator.compare(letraCelda, letra) == 0)
                 celda.setTextColor(Color.parseColor("#555555"));
         }
-
         return true;
     }
 
 
     public void rellenaPanel(TableLayout contenedor) throws Exception {
-        if (this.frase.isEmpty() || this.frase.length() >= MAX_LETRAS)
+        if (this.fraseActual.isEmpty() || this.fraseActual.length() >= MAX_LETRAS)
             throw new Exception("La frase es inválida");
 
-        char[] caracteres = String.format("%-"+MAX_LETRAS+"s", this.frase).toCharArray();
+        char[] caracteres = String.format("%-"+MAX_LETRAS+"s", this.fraseActual).toCharArray();
         int nFilas = contenedor.getChildCount();
 
         for (int i = 0, n = 0; i < nFilas; i++) {
@@ -59,8 +75,24 @@ public class Panel {
                 this.celdas.add(celda);
             }
         }
-
         revelaLetra(",");
         revelaLetra(".");
+    }
+
+
+    public void generaFraseYPista() {
+        int rand = (int) (Math.random() * Panel.frases.size());
+
+        this.fraseActual = Panel.frases.remove(rand);
+        this.pistaActual = Panel.pistas.remove(rand);
+    }
+
+
+    public String getFraseActual() {
+        return fraseActual;
+    }
+
+    public String getPistaActual() {
+        return pistaActual;
     }
 }

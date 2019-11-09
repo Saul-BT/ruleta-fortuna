@@ -11,8 +11,10 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TableLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.HashMap;
 import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
@@ -54,19 +56,10 @@ public class MainActivity extends AppCompatActivity {
         b_Start = findViewById(R.id.bTiraRuleta);
         RuletaImg = findViewById(R.id.RuletaImagen);
 
-        String fraseDePrueba = "Si no cagas en el baño, algo haces muy mal";
-        Panel p = new Panel(this, fraseDePrueba);
+        Panel p = new Panel(this);
+        ((TextView) findViewById(R.id.tvPista)).setText(p.getPistaActual());
         try {
             p.rellenaPanel((TableLayout) findViewById(R.id.tlPanel));
-            char[] chars = fraseDePrueba.toUpperCase().toCharArray();
-
-            p.revelaLetra("A");
-            p.revelaLetra("S");
-            p.revelaLetra("L");
-            p.revelaLetra("M");
-            p.revelaLetra("R");
-            p.revelaLetra("G");
-            p.revelaLetra("C");
 
             Log.i("AAAA", "GUAY");
         } catch (Exception e) {
