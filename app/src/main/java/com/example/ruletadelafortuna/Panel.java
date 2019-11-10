@@ -83,8 +83,8 @@ public class Panel {
     public void generaFraseYPista() {
         int rand = (int) (Math.random() * Panel.frases.size());
 
-        this.fraseActual = Panel.frases.remove(rand);
-        this.pistaActual = Panel.pistas.remove(rand);
+        this.fraseActual = Panel.frases.remove(rand).toUpperCase();
+        this.pistaActual = Panel.pistas.remove(rand).toUpperCase();
     }
 
 
