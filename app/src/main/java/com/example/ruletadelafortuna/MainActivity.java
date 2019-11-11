@@ -25,9 +25,11 @@ import java.util.Random;
 public class MainActivity extends AppCompatActivity implements Animation.AnimationListener {
 
     int grados = 0;
+    Panel panel;
     ImageButton b_Start;
     ImageView ruletaImg;
     TextView etiNarrador;
+
     // Pasar a enum
     Object[] gajos = {
             Gajo.GRAN_PREMIO, Gajo.CIEN, Gajo.AYUDA_FINAL,
@@ -62,11 +64,10 @@ public class MainActivity extends AppCompatActivity implements Animation.Animati
         b_Start = findViewById(R.id.bTiraRuleta);
         ruletaImg = findViewById(R.id.RuletaImagen);
         etiNarrador = findViewById(R.id.tvMensajePresentador);
-
-        Panel p = new Panel(this);
-        ((TextView) findViewById(R.id.tvPista)).setText(p.getPistaActual());
+        panel = new Panel(this);
+        ((TextView) findViewById(R.id.tvPista)).setText(panel.getPistaActual());
         try {
-            p.rellenaPanel((TableLayout) findViewById(R.id.tlPanel));
+            panel.rellenaPanel((TableLayout) findViewById(R.id.tlPanel));
 
             Log.i("AAAA", "GUAY");
         } catch (Exception e) {
@@ -134,7 +135,11 @@ public class MainActivity extends AppCompatActivity implements Animation.Animati
                 if (resultCode == RESULT_OK && data != null) {
                     ArrayList<String> result = data
                             .getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
-                    etiNarrador.setText(result.get(0));
+
+                    String letra = String.valueOf(result.get(0).charAt(0));
+                    int nCoincidencias = panel.revelaLetra(letra);
+
+                    etiNarrador.setText("Hay "+nCoincidencias+" "+letra);
                 }
                 break;
             }

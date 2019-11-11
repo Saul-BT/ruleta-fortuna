@@ -39,10 +39,11 @@ public class Panel {
 
 
     public int revelaLetra(String letra) {
-        if (!this.fraseActual.contains(letra)) return 0;
-
         int nLetras = 0;
         letra = letra.toUpperCase();
+
+        if (!this.fraseActual.contains(letra)) return nLetras;
+
         Collator espCollator = Collator.getInstance();
         espCollator.setStrength(Collator.PRIMARY);
 
