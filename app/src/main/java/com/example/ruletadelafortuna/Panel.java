@@ -38,19 +38,22 @@ public class Panel {
     }
 
 
-    public boolean revelaLetra(String letra) {
-        if (!this.fraseActual.contains(letra)) return false;
+    public int revelaLetra(String letra) {
+        if (!this.fraseActual.contains(letra)) return 0;
 
+        int nLetras = 0;
         letra = letra.toUpperCase();
         Collator espCollator = Collator.getInstance();
         espCollator.setStrength(Collator.PRIMARY);
 
         for (TextView celda : this.celdas) {
             String letraCelda = celda.getText().toString();
-            if (espCollator.compare(letraCelda, letra) == 0)
+            if (espCollator.compare(letraCelda, letra) == 0) {
                 celda.setTextColor(Color.parseColor("#555555"));
+                nLetras++;
+            }
         }
-        return true;
+        return nLetras;
     }
 
 
