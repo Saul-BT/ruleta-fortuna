@@ -5,6 +5,23 @@
         <item>Suena a música celestial</item>
         <item>Crea incertidumbre</item>
         <item>Noticias amables</item>
+        <item>Julio César</item>
+        <item>Proverbio</item>
+        <item>Leonardo Da Vinci</item>
+        <item>Antonio Machado</item>
+        <item>Real Madrid</item>
+        <item>Michael Jordan</item>
+        <item>Lauren Fisher</item>
+        <item>Carolina Marin</item>
+        <item>Motivación</item>
+        <item>Superación</item>
+        <item>Benjamin Button</item>
+        <item>Star Wars</item>
+        <item>La vida es bella</item>
+        <item>Tim Burton</item>
+        <item>Refrán</item>
+        <item>Nietzsche</item>
+        <item>Marc Anthony</item>
     </string-array>
 
     <string-array name="frases">
@@ -12,5 +29,22 @@
         <item>Tranquilo, está incluido en el precio</item>
         <item>Ser el primero en acabar un examen</item>
         <item>Galicia estrena el primer paso de vaca</item>
+        <item>Amo la traición, pero odio al traidor</item>
+        <item>La venganza es un plato que se sirve frio</item>
+        <item>El que no valora la vida, no la merece</item>
+        <item>Es de necio confundir valor y precio</item>
+        <item>Historia que tu hiciste, historia por hacer</item>
+        <item>El ganador, un soñador que nunca se rindio</item>
+        <item>No hay edad para lograr tus sueños</item>
+        <item>Puedo porque creo que puedo</item>
+        <item>La confianza, primer secreto del exito</item>
+        <item>Sueña sin miedos, entrena sin limites</item>
+        <item>La vida no se mide en minutos, en momentos</item>
+        <item>Que la fuerza te acompañe</item>
+        <item>Buenos dias princesa!</item>
+        <item>Puedes comprar relojes, pero no tiempo</item>
+        <item>No dejes para mañana lo que puedas hacer hoy</item>
+        <item>Sin musica, la vida perderia sentido</item>
+        <item>Escuchar el silencio, para encontrar el camino</item>
     </string-array>
 </resources>
