@@ -6,4 +6,5 @@
     <color name="backgroundColor">#FFFFFF</color>
     <color name="colorCeldaVacia">#3B4779</color>
     <color name="colorCeldaConLetra">#ACACAC</color>
+    <color name="colorTextoCeldaConLetra">#555555</color>
 </resources>

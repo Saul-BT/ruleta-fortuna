@@ -117,7 +117,7 @@ public class MainActivity extends AppCompatActivity implements Animation.Animati
             startActivityForResult(intent, 2);
         } catch (ActivityNotFoundException a) {
             Toast.makeText(getApplicationContext(),
-                    "Tu dispositivo es una un plátano",
+                    "Tu dispositivo es un plátano",
                     Toast.LENGTH_SHORT).show();
         }
     }
@@ -136,10 +136,16 @@ public class MainActivity extends AppCompatActivity implements Animation.Animati
                     ArrayList<String> result = data
                             .getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
 
+                    String mensaje;
                     String letra = String.valueOf(result.get(0).charAt(0));
                     int nCoincidencias = panel.revelaLetra(letra);
 
-                    etiNarrador.setText("Hay "+nCoincidencias+" "+letra);
+                    if (nCoincidencias == -1)
+                        mensaje = "La " +letra+" ya se ha dicho";
+                    else
+                        mensaje = "Hay "+nCoincidencias+" "+letra;
+
+                    etiNarrador.setText(mensaje);
                 }
                 break;
             }

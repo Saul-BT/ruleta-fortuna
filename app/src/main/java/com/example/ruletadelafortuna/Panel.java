@@ -29,15 +29,22 @@ public class Panel {
         this.activity = activity;
         this.celdas =  new ArrayList<>();
 
-        this.frases = new LinkedList<String>(Arrays.asList(
+        this.frases = new LinkedList<>(Arrays.asList(
                 this.activity.getResources().getStringArray(R.array.frases)));
-        this.pistas = new LinkedList<String>(Arrays.asList(
+        this.pistas = new LinkedList<>(Arrays.asList(
                 this.activity.getResources().getStringArray(R.array.pistas)));
 
+        // Llamada al metodo generaFraseYPista cuando se crea la instancia
         generaFraseYPista();
     }
 
 
+    /**
+     * Método que pinta las letras identificadas y el numero de ellas
+     * @param letra que se desea revelar
+     * @return N donde n es el número de letras pintadas o
+     *         -1 si la letra ya ha sido revelada
+     */
     public int revelaLetra(String letra) {
         int nLetras = 0;
         letra = letra.toUpperCase();
@@ -48,9 +55,16 @@ public class Panel {
         espCollator.setStrength(Collator.PRIMARY);
 
         for (TextView celda : this.celdas) {
+
             String letraCelda = celda.getText().toString();
             if (espCollator.compare(letraCelda, letra) == 0) {
-                celda.setTextColor(Color.parseColor("#555555"));
+                int colorTextoCelda = this.activity.getResources()
+                        .getColor(R.color.colorTextoCeldaConLetra);
+
+                if (celda.getCurrentTextColor() == colorTextoCelda)
+                    return -1;
+
+                celda.setTextColor(colorTextoCelda);
                 nLetras++;
             }
         }
@@ -58,6 +72,11 @@ public class Panel {
     }
 
 
+    /**
+     * Método que rellena el panel con las letras (transparentes) de la frase
+     * @param contenedor TableView
+     * @throws Exception si fraseActual está vacia o supera el límite de letras
+     */
     public void rellenaPanel(TableLayout contenedor) throws Exception {
         if (this.fraseActual.isEmpty() || this.fraseActual.length() >= MAX_LETRAS)
             throw new Exception("La frase es inválida");
@@ -84,6 +103,10 @@ public class Panel {
     }
 
 
+    /**
+     * Método que genera un par frase-pista aleatorio
+     * fraseActual y pistaActual tomarán esos valores
+     */
     public void generaFraseYPista() {
         int rand = (int) (Math.random() * Panel.frases.size());
 
