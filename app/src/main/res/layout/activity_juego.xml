@@ -1,0 +1,343 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/backgroundColor"
+    android:orientation="vertical">
+
+
+    <ImageView
+        android:id="@+id/RuletaImagen"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginBottom="10dp"
+        android:adjustViewBounds="true"
+        android:cropToPadding="false"
+        android:src="@drawable/ruleta"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <View
+        android:id="@+id/mantica"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        android:background="@drawable/ventanica_ruleta"
+        app:layout_constraintBottom_toBottomOf="@+id/RuletaImagen"
+        app:layout_constraintEnd_toEndOf="@+id/RuletaImagen"
+        app:layout_constraintStart_toStartOf="@+id/RuletaImagen"
+        app:layout_constraintTop_toTopOf="@+id/RuletaImagen" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+        android:background="#59A2AD"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/tvPista"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Pista"
+            android:textAlignment="center"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+    <TableLayout
+        android:id="@+id/tlPanel"
+        android:layout_width="0dp"
+        android:layout_height="172dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center">
+
+            <TextView style="@style/CeldaVacia" />
+
+            <TextView style="@style/CeldaVacia" />
+
+            <TextView style="@style/CeldaVacia" />
+
+            <TextView style="@style/CeldaVacia" />
+
+            <TextView style="@style/CeldaVacia" />
+
+            <TextView style="@style/CeldaVacia" />
+
+            <TextView style="@style/CeldaVacia" />
+
+            <TextView style="@style/CeldaVacia" />
+
+            <TextView style="@style/CeldaVacia" />
+
+            <TextView style="@style/CeldaVacia" />
+
+            <TextView style="@style/CeldaVacia" />
+
+            <TextView style="@style/CeldaVacia" />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center">
+
+            <TextView style="@style/CeldaVacia" />
+
+            <TextView style="@style/CeldaVacia" />
+
+            <TextView style="@style/CeldaVacia" />
+
+            <TextView style="@style/CeldaVacia" />
+
+            <TextView style="@style/CeldaVacia" />
+
+            <TextView style="@style/CeldaVacia" />
+
+            <TextView style="@style/CeldaVacia" />
+
+            <TextView style="@style/CeldaVacia" />
+
+            <TextView style="@style/CeldaVacia" />
+
+            <TextView style="@style/CeldaVacia" />
+
+            <TextView style="@style/CeldaVacia" />
+
+            <TextView style="@style/CeldaVacia" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center">
+
+            <TextView style="@style/CeldaVacia" />
+
+            <TextView style="@style/CeldaVacia" />
+
+            <TextView style="@style/CeldaVacia" />
+
+            <TextView style="@style/CeldaVacia" />
+
+            <TextView style="@style/CeldaVacia" />
+
+            <TextView style="@style/CeldaVacia" />
+
+            <TextView style="@style/CeldaVacia" />
+
+            <TextView style="@style/CeldaVacia" />
+
+            <TextView style="@style/CeldaVacia" />
+
+            <TextView style="@style/CeldaVacia" />
+
+            <TextView style="@style/CeldaVacia" />
+
+            <TextView style="@style/CeldaVacia" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center">
+
+            <TextView style="@style/CeldaVacia" />
+
+            <TextView style="@style/CeldaVacia" />
+
+            <TextView style="@style/CeldaVacia" />
+
+            <TextView style="@style/CeldaVacia" />
+
+            <TextView style="@style/CeldaVacia" />
+
+            <TextView style="@style/CeldaVacia" />
+
+            <TextView style="@style/CeldaVacia" />
+
+            <TextView style="@style/CeldaVacia" />
+
+            <TextView style="@style/CeldaVacia" />
+
+            <TextView style="@style/CeldaVacia" />
+
+            <TextView style="@style/CeldaVacia" />
+
+            <TextView style="@style/CeldaVacia" />
+        </TableRow>
+    </TableLayout>
+
+    <ImageButton
+        android:id="@+id/bTiraRuleta"
+        android:layout_width="90dp"
+        android:layout_height="90dp"
+        android:background="@drawable/boton_tirar"
+        android:onClick="onClickButtonRotation"
+        app:layout_constraintBottom_toBottomOf="@+id/RuletaImagen"
+        app:layout_constraintEnd_toEndOf="@+id/RuletaImagen"
+        app:layout_constraintStart_toStartOf="@+id/RuletaImagen"
+        app:layout_constraintTop_toTopOf="@+id/RuletaImagen" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="⧩"
+        android:textSize="36sp"
+        app:layout_constraintBottom_toTopOf="@+id/RuletaImagen"
+        app:layout_constraintEnd_toEndOf="@+id/RuletaImagen"
+        app:layout_constraintStart_toStartOf="@+id/RuletaImagen" />
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/avatarPlayer1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/f" />
+
+            <TextView
+                android:id="@+id/nombrePlayer1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Clara"
+                android:textAlignment="center"
+                android:textColor="#2196F3"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/scorePlayer1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:background="#2196F3"
+                android:text="150"
+                android:textAlignment="center"
+                android:textColor="#FFFFFF" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/avatarPlayer2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/f" />
+
+            <TextView
+                android:id="@+id/nombrePlayer2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Juana"
+                android:textAlignment="center"
+                android:textColor="#F44336"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/scorePlayer2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:background="#F44336"
+                android:text="2000"
+                android:textAlignment="center"
+                android:textColor="#FFFFFF" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/avatarPlayer3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/m" />
+
+            <TextView
+                android:id="@+id/nombrePlayer3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Raúl"
+                android:textAlignment="center"
+                android:textColor="#FF9800"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/scorePlayer3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:background="#FF9800"
+                android:text="300"
+                android:textAlignment="center"
+                android:textColor="#FFFFFF" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tvMensajePresentador"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Tu turno Clara"
+        app:layout_constraintBottom_toTopOf="@+id/textView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tlPanel" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
