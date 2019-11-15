@@ -1,31 +1,27 @@
 package com.example.ruletadelafortuna;
 
-import android.graphics.Color;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 
-import java.lang.reflect.Array;
 import java.text.Collator;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Random;
 
 public class Panel {
     private String fraseActual;
     private String pistaActual;
 
     private final int MAX_LETRAS = 48;
-    private MainActivity activity;
+    private JuegoActivity activity;
     private List<TextView> celdas;
 
     private static List<String> frases;
     private static List<String> pistas;
 
-    public Panel(MainActivity activity) {
+    public Panel(JuegoActivity activity) {
         this.activity = activity;
         this.celdas =  new ArrayList<>();
 

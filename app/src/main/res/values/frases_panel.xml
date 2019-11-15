@@ -7,21 +7,22 @@
         <item>Noticias amables</item>
         <item>Julio César</item>
         <item>Proverbio</item>
-        <item>Leonardo Da Vinci</item>
-        <item>Antonio Machado</item>
-        <item>Real Madrid</item>
-        <item>Michael Jordan</item>
-        <item>Lauren Fisher</item>
-        <item>Carolina Marin</item>
-        <item>Motivación</item>
-        <item>Superación</item>
-        <item>Benjamin Button</item>
-        <item>Star Wars</item>
+        <item>Lo dice Leonardo Da Vinci</item>
+        <item>Lo dice Antonio Machado</item>
+        <item>Himno de un club histórico </item>
+        <item>Lo dice Michael Jordan</item>
+        <item>Lo dice Lauren Fisher</item>
+        <item>Lo dice Carolina Marin</item>
+        <item>Motivate!</item>
+        <item>Superate!</item>
+        <item>Lo dice Benjamin Button</item>
+        <item>En una galaxia, muy lejana...</item>
         <item>La vida es bella</item>
-        <item>Tim Burton</item>
-        <item>Refrán</item>
-        <item>Nietzsche</item>
-        <item>Marc Anthony</item>
+        <item>Lo dice Tim Burton</item>
+        <item>Refrán refranero...</item>
+        <item>Lo dice Nietzsche</item>
+        <item>Lo canta Marc Anthony</item>
+        <item>Misión imposible</item>
     </string-array>
 
     <string-array name="frases">
@@ -46,5 +47,6 @@
         <item>No dejes para mañana lo que puedas hacer hoy</item>
         <item>Sin musica, la vida perderia sentido</item>
         <item>Escuchar el silencio, para encontrar el camino</item>
+        <item>Que en la administración te atiendan sin cita</item>
     </string-array>
 </resources>

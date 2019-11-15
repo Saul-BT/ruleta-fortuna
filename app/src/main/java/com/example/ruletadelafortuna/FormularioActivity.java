@@ -8,24 +8,23 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.RadioButton;
-import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
-public class IntroActivity extends AppCompatActivity {
+public class FormularioActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_intro);
+        setContentView(R.layout.activity_formulario);
     }
 
     public void procesarInfo(View v) {
         // MEH MEH MEH
-        Intent i = new Intent(this, MainActivity.class);
+        Intent i = new Intent(this, JuegoActivity.class);
 
         try {
             String[] datosValidados = devolverDatosValidados();

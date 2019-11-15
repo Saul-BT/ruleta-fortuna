@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <color name="colorPrimary">#008577</color>
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
@@ -7,4 +8,5 @@
     <color name="colorCeldaVacia">#3B4779</color>
     <color name="colorCeldaConLetra">#ACACAC</color>
     <color name="colorTextoCeldaConLetra">#555555</color>
+
 </resources>
