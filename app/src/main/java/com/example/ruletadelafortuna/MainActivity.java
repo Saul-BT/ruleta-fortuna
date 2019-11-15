@@ -60,12 +60,27 @@ public class MainActivity extends AppCompatActivity implements Animation.Animati
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Bundle playersBundle = getIntent().getExtras();
+
+        if (playersBundle == null) {
+            Intent i = new Intent(this, IntroActivity.class);
+            startActivity(i);
+        }
+        else { // No debería ser necesario
+            ((TextView) findViewById(R.id.nombrePlayer1))
+                    .setText(playersBundle.getString("player1"));
+            ((TextView) findViewById(R.id.nombrePlayer2))
+                    .setText(playersBundle.getString("player2"));
+            ((TextView) findViewById(R.id.nombrePlayer3))
+                    .setText(playersBundle.getString("player3"));
+        }
 
         b_Start = findViewById(R.id.bTiraRuleta);
         ruletaImg = findViewById(R.id.RuletaImagen);
         etiNarrador = findViewById(R.id.tvMensajePresentador);
         panel = new Panel(this);
         ((TextView) findViewById(R.id.tvPista)).setText(panel.getPistaActual());
+
         try {
             panel.rellenaPanel((TableLayout) findViewById(R.id.tlPanel));
 
