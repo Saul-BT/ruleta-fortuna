@@ -1,5 +1,6 @@
 package com.example.ruletadelafortuna;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.ActivityNotFoundException;
@@ -62,27 +63,28 @@ public class JuegoActivity extends AppCompatActivity implements Animation.Animat
         setContentView(R.layout.activity_juego);
         Bundle playersBundle = getIntent().getExtras();
 
-
-            ((TextView) findViewById(R.id.nombrePlayer1))
-                    .setText(playersBundle.getString("player1"));
-            ((TextView) findViewById(R.id.nombrePlayer2))
-                    .setText(playersBundle.getString("player2"));
-            ((TextView) findViewById(R.id.nombrePlayer3))
-                    .setText(playersBundle.getString("player3"));
-
+        // Dando nombres a los concursantes
+        ((TextView) findViewById(R.id.nombrePlayer1))
+                   .setText(playersBundle.getString("player1"));
+        ((TextView) findViewById(R.id.nombrePlayer2))
+                   .setText(playersBundle.getString("player2"));
+        ((TextView) findViewById(R.id.nombrePlayer3))
+                   .setText(playersBundle.getString("player3"));
 
         b_Start = findViewById(R.id.bTiraRuleta);
         ruletaImg = findViewById(R.id.RuletaImagen);
         etiNarrador = findViewById(R.id.tvMensajePresentador);
+
+        // Creando el panel y estableciendo la pista
         panel = new Panel(this);
         ((TextView) findViewById(R.id.tvPista)).setText(panel.getPistaActual());
 
         try {
             panel.rellenaPanel((TableLayout) findViewById(R.id.tlPanel));
-
-            Log.i("AAAA", "GUAY");
-        } catch (Exception e) {
-            Log.i("AAAA", e.toString());
+        }
+        catch (Exception e) {
+            new AlertDialog.Builder(this)
+                    .setTitle("Error").setMessage(e.getMessage()).create().show();
         }
     }
 
