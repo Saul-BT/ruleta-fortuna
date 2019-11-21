@@ -32,7 +32,7 @@ public class JuegoActivity extends AppCompatActivity implements Animation.Animat
     TextView etiNarrador;
 
     // Pasar a enum
-    Object[] gajos = {
+    Gajo[] gajos = {
             Gajo.GRAN_PREMIO, Gajo.CIEN, Gajo.AYUDA_FINAL,
             Gajo.QUIEBRA, Gajo.VEINTICINCO, Gajo.CERO,
             Gajo.CINCUENTA, Gajo.COMODIN, Gajo.INTERROGACION,
@@ -118,7 +118,9 @@ public class JuegoActivity extends AppCompatActivity implements Animation.Animat
 
     @Override
     public void onAnimationEnd(Animation animation) {
-        Toast.makeText(this, "Has caido en "+((Gajo)gajos[grados / 15]).getValor(),
+        Gajo gajoActual = gajos[grados / 15];
+
+        Toast.makeText(this, "Has caido en "+gajoActual.getValor(),
                 Toast.LENGTH_LONG).show();
 
         Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
