@@ -26,6 +26,7 @@ public class JuegoActivity extends AppCompatActivity implements Animation.Animat
 
     int grados = 0;
     Panel panel;
+    boolean girando;
     ImageButton b_Start;
     ImageView ruletaImg;
     TextView etiNarrador;
@@ -87,6 +88,7 @@ public class JuegoActivity extends AppCompatActivity implements Animation.Animat
     }
 
     public void onClickButtonRotation(View v){
+        if (girando) return;
         MediaPlayer mp = MediaPlayer.create(this, R.raw.girar);
         ImageButton play_button = this.findViewById(R.id.bTiraRuleta);
 
@@ -111,7 +113,7 @@ public class JuegoActivity extends AppCompatActivity implements Animation.Animat
 
     @Override
     public void onAnimationStart(Animation animation) {
-
+        girando = true;
     }
 
     @Override
@@ -131,6 +133,7 @@ public class JuegoActivity extends AppCompatActivity implements Animation.Animat
                     "Tu dispositivo es un plátano",
                     Toast.LENGTH_SHORT).show();
         }
+        girando = false;
     }
 
     @Override
