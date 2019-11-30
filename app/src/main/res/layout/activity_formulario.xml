@@ -63,6 +63,7 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="Nombre del jugador 1"
+        android:backgroundTint="@color/textColor"
         android:inputType="textPersonName" />
 
     <EditText
@@ -71,6 +72,7 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="Nombre del jugador 2"
+        android:backgroundTint="@color/textColor"
         android:inputType="textPersonName" />
 
     <EditText
@@ -79,10 +81,12 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="Nombre del jugador 3"
+        android:backgroundTint="@color/textColor"
         android:inputType="textPersonName" />
 
     <Button
         android:id="@+id/bAceptar"
+        style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20sp"

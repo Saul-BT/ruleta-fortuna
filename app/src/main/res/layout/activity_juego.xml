@@ -223,8 +223,8 @@
 
             <ImageView
                 android:id="@+id/avatarPlayer1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="50sp"
+                android:layout_height="50sp"
                 android:background="@drawable/avatar_femenino" />
 
             <TextView
@@ -258,15 +258,15 @@
 
             <ImageView
                 android:id="@+id/avatarPlayer2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/avatar_femenino" />
+                android:layout_width="50sp"
+                android:layout_height="50sp"
+                android:background="@drawable/avatar_masculino" />
 
             <TextView
                 android:id="@+id/nombrePlayer2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Juana"
+                android:text="Juan"
                 android:textAlignment="center"
                 android:textColor="#F44336"
                 android:textSize="18sp"
@@ -293,15 +293,15 @@
 
             <ImageView
                 android:id="@+id/avatarPlayer3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/avatar_masculino" />
+                android:layout_width="50sp"
+                android:layout_height="50sp"
+                android:background="@drawable/avatar_robot" />
 
             <TextView
                 android:id="@+id/nombrePlayer3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Raúl"
+                android:text="Bender"
                 android:textAlignment="center"
                 android:textColor="#FF9800"
                 android:textSize="18sp"

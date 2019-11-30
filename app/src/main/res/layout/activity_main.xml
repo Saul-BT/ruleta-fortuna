@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#323232"
+    android:background="@color/backgroundColor"
     android:orientation="vertical">
 
     <ImageView
@@ -24,14 +24,15 @@
 
     <Button
         android:id="@+id/bIniciar"
+        style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:onClick="iniciarJuego"
         android:padding="20sp"
-        android:textSize="24sp"
+        android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ruletaImagen"
-        tools:text="Empezar a jugar" />
+        android:text="Empezar a jugar" />
 </androidx.constraintlayout.widget.ConstraintLayout>
