@@ -66,8 +66,17 @@ public class FormularioActivity extends AppCompatActivity {
         String nombreRobot2 = nombresBot.get(rand.nextInt(nombresBot.size()));
         nombresBot.remove(nombreRobot2);
 
-        boolean j2esBot = !((RadioButton) findViewById(R.id.rbDosJuagaores)).isChecked();
-        boolean j3esBot = !((RadioButton) findViewById(R.id.rbTresJugadores)).isChecked();
+        boolean j2esBot = false;
+        boolean j3esBot = false;
+
+        RadioButton rb1Jugadores = findViewById(R.id.rbUnJugador);
+        RadioButton rb2Jugadores = findViewById(R.id.rbDosJuagaores);
+
+        if (rb2Jugadores.isChecked()) j3esBot = true;
+        else if (rb1Jugadores.isChecked()) {
+            j2esBot = true;
+            j3esBot = true;
+        }
 
         EditText tvNombreJugador1 = findViewById(R.id.etNombreJ1);
         EditText tvNombreJugador2 = findViewById(R.id.etNombreJ2);
