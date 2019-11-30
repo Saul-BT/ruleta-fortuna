@@ -38,7 +38,7 @@
         android:id="@+id/tvPista"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#59A2AD"
+        android:background="@color/colorPrimary"
         android:paddingTop="15sp"
         android:paddingBottom="15sp"
         android:text="Pista"
@@ -225,7 +225,7 @@
                 android:id="@+id/avatarPlayer1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/f" />
+                android:background="@drawable/avatar_femenino" />
 
             <TextView
                 android:id="@+id/nombrePlayer1"
@@ -260,7 +260,7 @@
                 android:id="@+id/avatarPlayer2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/f" />
+                android:background="@drawable/avatar_femenino" />
 
             <TextView
                 android:id="@+id/nombrePlayer2"
@@ -295,7 +295,7 @@
                 android:id="@+id/avatarPlayer3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/m" />
+                android:background="@drawable/avatar_masculino" />
 
             <TextView
                 android:id="@+id/nombrePlayer3"

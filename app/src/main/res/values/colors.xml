@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <color name="colorPrimary">#008577</color>
-    <color name="colorPrimaryDark">#00574B</color>
-    <color name="colorAccent">#D81B60</color>
-    <color name="backgroundColor">#FFFFFF</color>
+    <color name="colorPrimary">#6F9CEB</color>
+    <color name="colorPrimaryDark">#386FA4</color>
+    <color name="colorAccent">#84D2F6</color>
+    <color name="backgroundColor">#3A506B</color>
     <color name="colorCeldaVacia">#3B4779</color>
     <color name="colorCeldaConLetra">#ACACAC</color>
     <color name="colorTextoCeldaConLetra">#555555</color>

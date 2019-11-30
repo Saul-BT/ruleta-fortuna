@@ -24,12 +24,14 @@
 
     <Button
         android:id="@+id/bIniciar"
-        android:layout_width="335dp"
-        android:layout_height="92dp"
-        android:background="@drawable/botonjugar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:onClick="iniciarJuego"
+        android:padding="20sp"
+        android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ruletaImagen" />
+        app:layout_constraintTop_toBottomOf="@+id/ruletaImagen"
+        tools:text="Empezar a jugar" />
 </androidx.constraintlayout.widget.ConstraintLayout>
