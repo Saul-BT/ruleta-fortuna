@@ -3,6 +3,12 @@
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
+        <item name="android:textColor">@color/textColor</item>
+        <item name="android:textColorPrimary">@color/textColor</item>
+        <item name="android:textColorPrimaryDisableOnly">@color/textColor</item>
+        <item name="android:buttonTint">@color/colorAccent</item>
+        <item name="android:textColorHint">@color/hintColor</item>
+        <item name="android:colorBackground">@color/backgroundColor</item>
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
@@ -18,5 +24,9 @@
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_margin">1dp</item>
         <item name="android:layout_weight">1</item>
+    </style>
+
+    <style name="Boton" parent="@style/Widget.AppCompat.Button.Borderless.Colored">
+        <item name="android:textSize">24dp</item>
     </style>
 </resources>

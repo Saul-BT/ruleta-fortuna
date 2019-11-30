@@ -3,7 +3,9 @@
 
     <color name="colorPrimary">#6F9CEB</color>
     <color name="colorPrimaryDark">#386FA4</color>
-    <color name="colorAccent">#84D2F6</color>
+    <color name="colorAccent">#63B6DB</color>
+    <color name="textColor">#DDE5F1</color>
+    <color name="hintColor">#8A98B4</color>
     <color name="backgroundColor">#3A506B</color>
     <color name="colorCeldaVacia">#3B4779</color>
     <color name="colorCeldaConLetra">#ACACAC</color>
