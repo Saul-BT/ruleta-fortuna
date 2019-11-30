@@ -48,16 +48,16 @@ public class FormularioActivity extends AppCompatActivity {
     private String[] devolverDatosValidados() throws Exception {
 
         List<String> nombresBot = new ArrayList<String>() {{
-                add("HAL");        add("C3P0");
-                add("BB-8");       add("Alita");
-                add("María");      add("Sonny");
-                add("R2-D2");      add("TC-14");
-                add("BB-9E");      add("Skynet");
-                add("Bender");     add("WALL-E");
-                add("Marvin");     add("Rachael");
-                add("Chappie");    add("RoboCop");
-                add("Destructor"); add("Ex Machina");
-                add("Mazinger-Z"); add("Droide cangrejo");
+                add("Ash");     add("HAL");     add("RoboCop");
+                add("BMO");     add("TARS");    add("AlphaGo");
+                add("C3P0");    add("BB-8");    add("Doraemon");
+                add("Andy");    add("Alita");   add("Akinator");
+                add("María");   add("Sonny");   add("Ex Machina");
+                add("R2-D2");   add("TC-14");   add("Afrodita-a");
+                add("BB-9E");   add("Skynet");  add("Mazinger-Z");
+                add("Bender");  add("WALL-E");  add("Destructor");
+                add("Marvin");  add("Roomba");  add("AlphaGo Zero");
+                add("Rachael"); add("Chappie"); add("J.A.R.V.I.S.");
         }};
         Collections.shuffle(nombresBot);
         Random rand = new Random();

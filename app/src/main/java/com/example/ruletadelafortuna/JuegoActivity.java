@@ -27,12 +27,13 @@ public class JuegoActivity extends AppCompatActivity implements Animation.Animat
 
     int grados = 0;
     Panel panel;
+    boolean girando;
     ImageButton b_Start;
     ImageView ruletaImg;
     TextView etiNarrador;
 
     // Pasar a enum
-    Object[] gajos = {
+    Gajo[] gajos = {
             Gajo.GRAN_PREMIO, Gajo.CIEN, Gajo.AYUDA_FINAL,
             Gajo.QUIEBRA, Gajo.VEINTICINCO, Gajo.CERO,
             Gajo.CINCUENTA, Gajo.COMODIN, Gajo.INTERROGACION,
@@ -89,6 +90,7 @@ public class JuegoActivity extends AppCompatActivity implements Animation.Animat
     }
 
     public void onClickButtonRotation(View v){
+        if (girando) return;
         MediaPlayer mp = MediaPlayer.create(this, R.raw.girar);
         ImageButton play_button = this.findViewById(R.id.bTiraRuleta);
 
@@ -113,12 +115,14 @@ public class JuegoActivity extends AppCompatActivity implements Animation.Animat
 
     @Override
     public void onAnimationStart(Animation animation) {
-
+        girando = true;
     }
 
     @Override
     public void onAnimationEnd(Animation animation) {
-        Toast.makeText(this, "Has caido en "+((Gajo)gajos[grados / 15]).getValor(),
+        Gajo gajoActual = gajos[grados / 15];
+
+        Toast.makeText(this, "Has caido en "+gajoActual.getValor(),
                 Toast.LENGTH_LONG).show();
 
         Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
@@ -133,6 +137,7 @@ public class JuegoActivity extends AppCompatActivity implements Animation.Animat
                     "Tu dispositivo es un plátano",
                     Toast.LENGTH_SHORT).show();
         }
+        girando = false;
     }
 
     @Override
