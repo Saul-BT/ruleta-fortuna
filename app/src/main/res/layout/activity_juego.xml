@@ -224,8 +224,7 @@
             <ImageView
                 android:id="@+id/avatarPlayer1"
                 android:layout_width="50sp"
-                android:layout_height="50sp"
-                android:background="@drawable/avatar_femenino" />
+                android:layout_height="50sp" />
 
             <TextView
                 android:id="@+id/nombrePlayer1"
@@ -244,7 +243,7 @@
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
                 android:background="#2196F3"
-                android:text="150"
+                android:text="0"
                 android:textAlignment="center"
                 android:textColor="#FFFFFF" />
         </LinearLayout>
@@ -259,8 +258,7 @@
             <ImageView
                 android:id="@+id/avatarPlayer2"
                 android:layout_width="50sp"
-                android:layout_height="50sp"
-                android:background="@drawable/avatar_masculino" />
+                android:layout_height="50sp" />
 
             <TextView
                 android:id="@+id/nombrePlayer2"
@@ -279,7 +277,7 @@
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
                 android:background="#F44336"
-                android:text="2000"
+                android:text="0"
                 android:textAlignment="center"
                 android:textColor="#FFFFFF" />
         </LinearLayout>
@@ -294,8 +292,7 @@
             <ImageView
                 android:id="@+id/avatarPlayer3"
                 android:layout_width="50sp"
-                android:layout_height="50sp"
-                android:background="@drawable/avatar_robot" />
+                android:layout_height="50sp" />
 
             <TextView
                 android:id="@+id/nombrePlayer3"
@@ -314,7 +311,7 @@
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
                 android:background="#FF9800"
-                android:text="300"
+                android:text="0"
                 android:textAlignment="center"
                 android:textColor="#FFFFFF" />
         </LinearLayout>

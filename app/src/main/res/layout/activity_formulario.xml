@@ -57,32 +57,138 @@
 
     </LinearLayout>
 
-    <EditText
-        android:id="@+id/etNombreJ1"
+    <LinearLayout
+        android:id="@+id/contenedorInfoJ1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="Nombre del jugador 1"
-        android:backgroundTint="@color/textColor"
-        android:inputType="textPersonName" />
+        android:orientation="horizontal">
 
-    <EditText
-        android:id="@+id/etNombreJ2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="Nombre del jugador 2"
-        android:backgroundTint="@color/textColor"
-        android:inputType="textPersonName" />
+        <EditText
+            android:id="@+id/etNombreJ1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:backgroundTint="@color/textColor"
+            android:ems="10"
+            android:hint="Nombre del jugador 1"
+            android:inputType="textPersonName" />
 
-    <EditText
-        android:id="@+id/etNombreJ3"
+        <RadioGroup
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="0"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/rbFemenino1"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_margin="5sp"
+                android:accessibilityLiveRegion="none"
+                android:background="@drawable/avatar_femenino"
+                android:singleLine="false" />
+
+            <RadioButton
+                android:id="@+id/rbMasculino1"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_margin="5sp"
+                android:accessibilityLiveRegion="none"
+                android:background="@drawable/avatar_masculino"
+                android:checked="true"
+                android:singleLine="false" />
+        </RadioGroup>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/contenedorInfoJ2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="Nombre del jugador 3"
-        android:backgroundTint="@color/textColor"
-        android:inputType="textPersonName" />
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/etNombreJ2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:backgroundTint="@color/textColor"
+            android:ems="10"
+            android:hint="Nombre del jugador 2"
+            android:inputType="textPersonName" />
+
+        <RadioGroup
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="0"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/rbFemenino2"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_margin="5sp"
+                android:accessibilityLiveRegion="none"
+                android:background="@drawable/avatar_femenino"
+                android:singleLine="false" />
+
+            <RadioButton
+                android:id="@+id/rbMasculino2"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_margin="5sp"
+                android:accessibilityLiveRegion="none"
+                android:background="@drawable/avatar_masculino"
+                android:checked="true"
+                android:singleLine="false" />
+        </RadioGroup>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/contenedorInfoJ3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/etNombreJ3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:backgroundTint="@color/textColor"
+            android:ems="10"
+            android:hint="Nombre del jugador 3"
+            android:inputType="textPersonName" />
+
+        <RadioGroup
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="0"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/rbFemenino3"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_margin="5sp"
+                android:accessibilityLiveRegion="none"
+                android:background="@drawable/avatar_femenino"
+                android:singleLine="false" />
+
+            <RadioButton
+                android:id="@+id/rbMasculino3"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_margin="5sp"
+                android:accessibilityLiveRegion="none"
+                android:background="@drawable/avatar_masculino"
+                android:checked="true"
+                android:singleLine="false" />
+        </RadioGroup>
+    </LinearLayout>
 
     <Button
         android:id="@+id/bAceptar"

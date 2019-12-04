@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.RadioButton;
 
 import java.util.ArrayList;
@@ -27,7 +28,7 @@ public class FormularioActivity extends AppCompatActivity {
         Intent i = new Intent(this, JuegoActivity.class);
 
         try {
-            String[] datosValidados = devolverDatosValidados();
+            /*String[] datosValidados = devolverDatosValidados();
             boolean j2esBot = ((RadioButton) findViewById(R.id.rbDosJuagaores)).isChecked();
             boolean j3esBot = ((RadioButton) findViewById(R.id.rbTresJugadores)).isChecked();
 
@@ -36,7 +37,10 @@ public class FormularioActivity extends AppCompatActivity {
             i.putExtra("player3", datosValidados[2]);
 
             i.putExtra("player2esBot", j2esBot);
-            i.putExtra("player3esBot", j3esBot);
+            i.putExtra("player3esBot", j3esBot);*/
+
+            Jugador[] jugadores = devolverDatosValidados();
+            i.putExtra("Jugadores", jugadores);
 
             startActivity(i);
         } catch (Exception e) {
@@ -45,27 +49,7 @@ public class FormularioActivity extends AppCompatActivity {
         }
     }
 
-    private String[] devolverDatosValidados() throws Exception {
-
-        List<String> nombresBot = new ArrayList<String>() {{
-                add("Ash");     add("HAL");     add("RoboCop");
-                add("BMO");     add("TARS");    add("AlphaGo");
-                add("C3P0");    add("BB-8");    add("Doraemon");
-                add("Andy");    add("Alita");   add("Akinator");
-                add("María");   add("Sonny");   add("Ex Machina");
-                add("R2-D2");   add("TC-14");   add("Afrodita-a");
-                add("BB-9E");   add("Skynet");  add("Mazinger-Z");
-                add("Bender");  add("WALL-E");  add("Destructor");
-                add("Marvin");  add("Roomba");  add("AlphaGo Zero");
-                add("Rachael"); add("Chappie"); add("J.A.R.V.I.S.");
-        }};
-        Collections.shuffle(nombresBot);
-        Random rand = new Random();
-        String nombreRobot1 = nombresBot.get(rand.nextInt(nombresBot.size()));
-        nombresBot.remove(nombreRobot1);
-        String nombreRobot2 = nombresBot.get(rand.nextInt(nombresBot.size()));
-        nombresBot.remove(nombreRobot2);
-
+    private Jugador[] devolverDatosValidados() throws Exception {
         boolean j2esBot = false;
         boolean j3esBot = false;
 
@@ -78,21 +62,40 @@ public class FormularioActivity extends AppCompatActivity {
             j3esBot = true;
         }
 
-        EditText tvNombreJugador1 = findViewById(R.id.etNombreJ1);
-        EditText tvNombreJugador2 = findViewById(R.id.etNombreJ2);
-        EditText tvNombreJugador3 = findViewById(R.id.etNombreJ3);
+        boolean esFemenino1 = ((RadioButton) findViewById(R.id.rbFemenino1)).isChecked();
+        boolean esFemenino2 = ((RadioButton) findViewById(R.id.rbFemenino2)).isChecked();
+        boolean esFemenino3 = ((RadioButton) findViewById(R.id.rbFemenino3)).isChecked();
 
-        String[] datos = {
-                tvNombreJugador1.getText().toString(),
-                j2esBot ? nombreRobot1 : tvNombreJugador2.getText().toString(),
-                j3esBot ? nombreRobot2 : tvNombreJugador3.getText().toString(),
+        int avatarId1 = esFemenino1
+                            ? R.drawable.avatar_femenino
+                            : R.drawable.avatar_masculino;
+        int avatarId2 = esFemenino2
+                            ? R.drawable.avatar_femenino
+                            : R.drawable.avatar_masculino;
+        int avatarId3 = esFemenino3
+                            ? R.drawable.avatar_femenino
+                            : R.drawable.avatar_masculino;
+
+        String nombreJugador1 = ((EditText) findViewById(R.id.etNombreJ1)).getText().toString();
+        String nombreJugador2 = ((EditText) findViewById(R.id.etNombreJ2)).getText().toString();
+        String nombreJugador3 = ((EditText) findViewById(R.id.etNombreJ3)).getText().toString();
+
+        Jugador[] jugadores = {
+                new Humano(nombreJugador1, avatarId1),
+
+                j2esBot
+                        ? new Bot()
+                        : new Humano(nombreJugador2, avatarId2),
+                j3esBot
+                        ? new Bot()
+                        : new Humano(nombreJugador3, avatarId3),
         };
 
-        for (String dato : datos)
-            if (dato.isEmpty() || dato.equals("0"))
+        for (Jugador jugador : jugadores)
+            if (jugador.getNombre().isEmpty())
                 throw new Exception("La información introducida no es válida");
 
-        return datos;
+        return jugadores;
     }
 
     public void procesarRB(View v) {
@@ -100,19 +103,19 @@ public class FormularioActivity extends AppCompatActivity {
         RadioButton rb2 = findViewById(R.id.rbDosJuagaores);
         RadioButton rb3 = findViewById(R.id.rbTresJugadores);
 
-        EditText tvNombreJugador1 = findViewById(R.id.etNombreJ1);
-        EditText tvNombreJugador2 = findViewById(R.id.etNombreJ2);
-        EditText tvNombreJugador3 = findViewById(R.id.etNombreJ3);
+        LinearLayout contenedorJugador1 = findViewById(R.id.contenedorInfoJ1);
+        LinearLayout contenedorJugador2 = findViewById(R.id.contenedorInfoJ2);
+        LinearLayout contenedorJugador3 = findViewById(R.id.contenedorInfoJ3);
 
-        tvNombreJugador1.setVisibility(View.VISIBLE);
-        tvNombreJugador2.setVisibility(View.VISIBLE);
-        tvNombreJugador3.setVisibility(View.VISIBLE);
+        contenedorJugador1.setVisibility(View.VISIBLE);
+        contenedorJugador2.setVisibility(View.VISIBLE);
+        contenedorJugador3.setVisibility(View.VISIBLE);
 
         if (rb1.isChecked()) {
-            tvNombreJugador2.setVisibility(View.GONE);
-            tvNombreJugador3.setVisibility(View.GONE);
+            contenedorJugador2.setVisibility(View.GONE);
+            contenedorJugador3.setVisibility(View.GONE);
         }
         else if (rb2.isChecked())
-            tvNombreJugador3.setVisibility(View.GONE);
+            contenedorJugador3.setVisibility(View.GONE);
     }
 }

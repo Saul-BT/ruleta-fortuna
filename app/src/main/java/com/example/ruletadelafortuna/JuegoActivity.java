@@ -7,6 +7,7 @@ import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.speech.RecognizerIntent;
 import android.util.Log;
 import android.view.View;
@@ -31,6 +32,11 @@ public class JuegoActivity extends AppCompatActivity implements Animation.Animat
     ImageButton b_Start;
     ImageView ruletaImg;
     TextView etiNarrador;
+
+
+    TextView scorePlayer1;
+    TextView scorePlayer2;
+    TextView scorePlayer3;
 
     // Pasar a enum
     Gajo[] gajos = {
@@ -64,13 +70,30 @@ public class JuegoActivity extends AppCompatActivity implements Animation.Animat
         setContentView(R.layout.activity_juego);
         Bundle playersBundle = getIntent().getExtras();
 
-        // Dando nombres a los concursantes
-        ((TextView) findViewById(R.id.nombrePlayer1))
-                   .setText(playersBundle.getString("player1"));
-        ((TextView) findViewById(R.id.nombrePlayer2))
-                   .setText(playersBundle.getString("player2"));
-        ((TextView) findViewById(R.id.nombrePlayer3))
-                   .setText(playersBundle.getString("player3"));
+        // Estableciendo nombre y avatar a los concursantes
+        TextView[] tvPlayers = {
+                findViewById(R.id.nombrePlayer1),
+                findViewById(R.id.nombrePlayer2),
+                findViewById(R.id.nombrePlayer3),
+        };
+
+        ImageView[] playerAvatars = {
+                findViewById(R.id.avatarPlayer1),
+                findViewById(R.id.avatarPlayer2),
+                findViewById(R.id.avatarPlayer3),
+        };
+
+        Parcelable[] jugadores = (Parcelable[]) playersBundle.get("Jugadores");
+
+        for (int i = 0; i < jugadores.length; i++) {
+            Jugador jugador = (Jugador) jugadores[i];
+            tvPlayers[i].setText(jugador.getNombre());
+            playerAvatars[i].setImageDrawable(this.getResources().getDrawable(jugador.getAvatar()));
+        }
+        
+        scorePlayer1 = findViewById(R.id.scorePlayer1);
+        scorePlayer2 = findViewById(R.id.scorePlayer2);
+        scorePlayer3 = findViewById(R.id.scorePlayer3);
 
         b_Start = findViewById(R.id.bTiraRuleta);
         ruletaImg = findViewById(R.id.RuletaImagen);
