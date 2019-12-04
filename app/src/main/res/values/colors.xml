@@ -15,5 +15,7 @@
     <color name="colorJugador2">#F44336</color>
     <color name="colorJugador3">#FF9800</color>
 
+    <color name="colorLetrasTeclado">#ff000000</color>
+
 
 </resources>
