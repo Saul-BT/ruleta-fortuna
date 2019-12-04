@@ -43,6 +43,7 @@ public class Panel {
      */
     public int revelaLetra(String letra) {
         int nLetras = 0;
+
         letra = letra.toUpperCase();
 
         if (!this.fraseActual.contains(letra)) return nLetras;

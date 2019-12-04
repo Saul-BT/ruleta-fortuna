@@ -11,4 +11,9 @@
     <color name="colorCeldaConLetra">#ACACAC</color>
     <color name="colorTextoCeldaConLetra">#555555</color>
 
+    <color name="colorJugador1">#2196F3</color>
+    <color name="colorJugador2">#F44336</color>
+    <color name="colorJugador3">#FF9800</color>
+
+
 </resources>

@@ -233,7 +233,7 @@
                 android:layout_height="wrap_content"
                 android:text="Clara"
                 android:textAlignment="center"
-                android:textColor="#2196F3"
+                android:textColor="@color/colorJugador1"
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
@@ -243,7 +243,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
-                android:background="#2196F3"
+                android:background="@color/colorJugador1"
                 android:text="150"
                 android:textAlignment="center"
                 android:textColor="#FFFFFF" />
@@ -268,7 +268,7 @@
                 android:layout_height="wrap_content"
                 android:text="Juan"
                 android:textAlignment="center"
-                android:textColor="#F44336"
+                android:textColor="@color/colorJugador2"
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
@@ -278,7 +278,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
-                android:background="#F44336"
+                android:background="@color/colorJugador2"
                 android:text="2000"
                 android:textAlignment="center"
                 android:textColor="#FFFFFF" />
@@ -303,7 +303,7 @@
                 android:layout_height="wrap_content"
                 android:text="Bender"
                 android:textAlignment="center"
-                android:textColor="#FF9800"
+                android:textColor="@color/colorJugador3"
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
@@ -313,7 +313,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
-                android:background="#FF9800"
+                android:background="@color/colorJugador3"
                 android:text="300"
                 android:textAlignment="center"
                 android:textColor="#FFFFFF" />
