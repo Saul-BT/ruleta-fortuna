@@ -5,15 +5,17 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.GradientDrawable;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.speech.RecognizerIntent;
-import android.util.Log;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.DecelerateInterpolator;
 import android.view.animation.RotateAnimation;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TableLayout;
@@ -29,9 +31,10 @@ public class JuegoActivity extends AppCompatActivity implements Animation.Animat
     int grados = 0;
     Panel panel;
     boolean girando;
-    ImageButton b_Start;
+    Button b_Start;
     ImageView ruletaImg;
     TextView etiNarrador;
+    Jugador[] jugadores;
 
 
     TextView scorePlayer1;
@@ -83,12 +86,16 @@ public class JuegoActivity extends AppCompatActivity implements Animation.Animat
                 findViewById(R.id.avatarPlayer3),
         };
 
-        Parcelable[] jugadores = (Parcelable[]) playersBundle.get("Jugadores");
+        Parcelable[] jugadoresParcel = (Parcelable[]) playersBundle.get("Jugadores");
+        ((Jugador) jugadoresParcel[0]).esJugadorActual = true;
+        this.jugadores = new Jugador[jugadoresParcel.length];
 
-        for (int i = 0; i < jugadores.length; i++) {
-            Jugador jugador = (Jugador) jugadores[i];
+        for (int i = 0; i < jugadoresParcel.length; i++) {
+            Jugador jugador = (Jugador) jugadoresParcel[i];
+            jugadores[i] = jugador;
+
             tvPlayers[i].setText(jugador.getNombre());
-            playerAvatars[i].setImageDrawable(this.getResources().getDrawable(jugador.getAvatar()));
+            playerAvatars[i].setImageDrawable(getResources().getDrawable(jugador.getAvatar()));
         }
         
         scorePlayer1 = findViewById(R.id.scorePlayer1);
@@ -98,6 +105,8 @@ public class JuegoActivity extends AppCompatActivity implements Animation.Animat
         b_Start = findViewById(R.id.bTiraRuleta);
         ruletaImg = findViewById(R.id.RuletaImagen);
         etiNarrador = findViewById(R.id.tvMensajePresentador);
+
+        decideTurno();
 
         // Creando el panel y estableciendo la pista
         panel = new Panel(this);
@@ -112,10 +121,30 @@ public class JuegoActivity extends AppCompatActivity implements Animation.Animat
         }
     }
 
+    private void decideTurno() {
+        int[] codigosColorAvatar = {
+                this.getResources().getColor(R.color.colorJugador1),
+                this.getResources().getColor(R.color.colorJugador2),
+                this.getResources().getColor(R.color.colorJugador3),
+        };
+        GradientDrawable fondo = (GradientDrawable) b_Start.getBackground();
+
+        for (int i = 0; i < jugadores.length; i++) {
+            if (jugadores[i].esJugadorActual) {
+                etiNarrador.setText("Tu turno " + jugadores[i].nombre);
+                fondo.setColors(new int[] {codigosColorAvatar[i], codigosColorAvatar[i]});
+
+                jugadores[i].esJugadorActual = false;
+                jugadores[(i + 1) % jugadores.length].esJugadorActual = true;
+                break;
+            }
+        }
+    }
+
     public void onClickButtonRotation(View v){
         if (girando) return;
         MediaPlayer mp = MediaPlayer.create(this, R.raw.girar);
-        ImageButton play_button = this.findViewById(R.id.bTiraRuleta);
+        Button play_button = this.findViewById(R.id.bTiraRuleta);
 
         int ran = new Random().nextInt(360) + 360 * 2;
         RotateAnimation rotateAnimation = new RotateAnimation(
@@ -161,6 +190,7 @@ public class JuegoActivity extends AppCompatActivity implements Animation.Animat
                     Toast.LENGTH_SHORT).show();
         }
         girando = false;
+        decideTurno();
     }
 
     @Override

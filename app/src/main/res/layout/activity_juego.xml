@@ -184,16 +184,19 @@
         </TableRow>
     </TableLayout>
 
-    <ImageButton
+    <Button
         android:id="@+id/bTiraRuleta"
-        android:layout_width="90dp"
-        android:layout_height="90dp"
-        android:background="@drawable/boton_tirar"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:background="@drawable/circle_boton_tirar"
         android:onClick="onClickButtonRotation"
-        app:layout_constraintBottom_toBottomOf="@+id/RuletaImagen"
-        app:layout_constraintEnd_toEndOf="@+id/RuletaImagen"
-        app:layout_constraintStart_toStartOf="@+id/RuletaImagen"
-        app:layout_constraintTop_toTopOf="@+id/RuletaImagen" />
+        android:text="Tira"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/mantica"
+        app:layout_constraintEnd_toEndOf="@+id/mantica"
+        app:layout_constraintStart_toStartOf="@+id/mantica"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     <TextView
         android:id="@+id/textView"
@@ -206,6 +209,7 @@
         app:layout_constraintStart_toStartOf="@+id/RuletaImagen" />
 
     <LinearLayout
+        android:id="@+id/linearLayout"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
