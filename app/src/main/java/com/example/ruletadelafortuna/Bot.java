@@ -1,7 +1,7 @@
 package com.example.ruletadelafortuna;
 
-import android.content.Context;
 import android.os.Parcel;
+import android.widget.Button;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -31,8 +31,9 @@ public class Bot extends Jugador {
     }
 
     @Override
-    public void tirarRuleta(int fuerza) {
-
+    public void tirarRuleta(Button bTirar) {
+        if (bTirar.isEnabled()) bTirar.setEnabled(false);
+        bTirar.performClick();
     }
 
     @Override

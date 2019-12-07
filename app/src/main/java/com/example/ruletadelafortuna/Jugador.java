@@ -1,7 +1,7 @@
 package com.example.ruletadelafortuna;
 
-import android.graphics.drawable.Drawable;
 import android.os.Parcelable;
+import android.widget.Button;
 
 public abstract class Jugador implements Parcelable {
     String nombre;
@@ -10,7 +10,7 @@ public abstract class Jugador implements Parcelable {
     public int dineroGanado = 0;
     public boolean esJugadorActual = false;
 
-    abstract public void tirarRuleta(int fuerza);
+    abstract public void tirarRuleta(Button bTirar);
     public String getNombre() { return nombre; }
     public int getAvatar() { return avatarId; }
 }

@@ -32,7 +32,7 @@ public class JuegoActivity extends AppCompatActivity implements Animation.Animat
     private int grados = 0;
     private Panel panel;
     private boolean girando;
-    private Button b_Start;
+    private Button bTirar;
     private ImageView ruletaImg;
     private TextView etiNarrador;
     private Jugador[] jugadores;
@@ -104,7 +104,7 @@ public class JuegoActivity extends AppCompatActivity implements Animation.Animat
         scorePlayer2 = findViewById(R.id.scorePlayer2);
         scorePlayer3 = findViewById(R.id.scorePlayer3);
 
-        b_Start = findViewById(R.id.bTiraRuleta);
+        bTirar = findViewById(R.id.bTiraRuleta);
         ruletaImg = findViewById(R.id.RuletaImagen);
         etiNarrador = findViewById(R.id.tvMensajePresentador);
 
@@ -130,12 +130,13 @@ public class JuegoActivity extends AppCompatActivity implements Animation.Animat
                 {codMorado, this.getResources().getColor(R.color.colorJugador2)},
                 {codMorado, this.getResources().getColor(R.color.colorJugador3)},
         };
-        GradientDrawable fondo = (GradientDrawable) b_Start.getBackground();
+        GradientDrawable fondo = (GradientDrawable) bTirar.getBackground();
 
         for (int i = 0; i < jugadores.length; i++) {
             if (jugadores[i].esJugadorActual) {
                 etiNarrador.setText("Tu turno " + jugadores[i].nombre);
                 fondo.setColors(codigosColorAvatar[i]);
+                jugadores[i].tirarRuleta(bTirar);
 
                 jugadores[i].esJugadorActual = false;
                 jugadores[(i + 1) % jugadores.length].esJugadorActual = true;

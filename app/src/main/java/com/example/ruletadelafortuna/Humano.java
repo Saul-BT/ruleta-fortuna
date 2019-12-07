@@ -1,7 +1,7 @@
 package com.example.ruletadelafortuna;
 
-import android.graphics.drawable.Drawable;
 import android.os.Parcel;
+import android.widget.Button;
 
 public class Humano extends Jugador {
     public Humano(String nombre, int avatarId) {
@@ -10,8 +10,8 @@ public class Humano extends Jugador {
     }
 
     @Override
-    public void tirarRuleta(int fuerza) {
-
+    public void tirarRuleta(Button bTirar) {
+        if (!bTirar.isEnabled()) bTirar.setEnabled(true);
     }
 
     @Override
