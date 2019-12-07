@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Teclado">
+
+    <!-- TODO: Update blank fragment layout -->
+    <TableLayout
+        android:id="@+id/tlTeclado"
+        android:layout_width="365dp"
+        android:layout_height="158dp"
+        android:layout_marginStart="22dp"
+        android:layout_marginTop="500dp"
+        android:layout_marginEnd="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvPista">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center">
+
+            <TextView
+                style="@style/CeldaVacia"
+                android:background="@drawable/rounded_celda_teclado"
+                android:text="A"
+                android:textColor="@color/colorLetrasTeclado" />
+
+            <TextView
+                style="@style/CeldaVacia"
+                android:background="@drawable/rounded_celda_teclado"
+                android:text="B"
+                android:textColor="@color/colorLetrasTeclado" />
+
+            <TextView
+                style="@style/CeldaVacia"
+                android:background="@drawable/rounded_celda_teclado"
+                android:text="C"
+                android:textColor="@color/colorLetrasTeclado" />
+
+            <TextView
+                style="@style/CeldaVacia"
+                android:background="@drawable/rounded_celda_teclado"
+                android:text="D"
+                android:textColor="@color/colorLetrasTeclado" />
+
+            <TextView
+                style="@style/CeldaVacia"
+                android:background="@drawable/rounded_celda_teclado"
+                android:text="E"
+                android:textColor="@color/colorLetrasTeclado" />
+
+            <TextView
+                style="@style/CeldaVacia"
+                android:background="@drawable/rounded_celda_teclado"
+                android:text="F"
+                android:textColor="@color/colorLetrasTeclado" />
+
+            <TextView
+                style="@style/CeldaVacia"
+                android:background="@drawable/rounded_celda_teclado"
+                android:text="G"
+                android:textColor="@color/colorLetrasTeclado" />
+
+            <TextView
+                style="@style/CeldaVacia"
+                android:background="@drawable/rounded_celda_teclado"
+                android:text="H"
+                android:textColor="@color/colorLetrasTeclado" />
+
+            <TextView
+                style="@style/CeldaVacia"
+                android:background="@drawable/rounded_celda_teclado"
+                android:text="I"
+                android:textColor="@color/colorLetrasTeclado" />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center">
+
+            <TextView
+                style="@style/CeldaVacia"
+                android:background="@drawable/rounded_celda_teclado"
+                android:textColor="@color/colorLetrasTeclado"
+                tools:text="J" />
+
+            <TextView
+                style="@style/CeldaVacia"
+                android:background="@drawable/rounded_celda_teclado"
+                android:textColor="@color/colorLetrasTeclado"
+                tools:text="K" />
+
+            <TextView
+                style="@style/CeldaVacia"
+                android:background="@drawable/rounded_celda_teclado"
+                android:textColor="@color/colorLetrasTeclado"
+                tools:text="L" />
+
+            <TextView
+                style="@style/CeldaVacia"
+                android:background="@drawable/rounded_celda_teclado"
+                android:textColor="@color/colorLetrasTeclado"
+                tools:text="M" />
+
+            <TextView
+                style="@style/CeldaVacia"
+                android:background="@drawable/rounded_celda_teclado"
+                android:textColor="@color/colorLetrasTeclado"
+                tools:text="N" />
+
+            <TextView
+                style="@style/CeldaVacia"
+                android:background="@drawable/rounded_celda_teclado"
+                android:textColor="@color/colorLetrasTeclado"
+                tools:text="Ñ" />
+
+            <TextView
+                style="@style/CeldaVacia"
+                android:background="@drawable/rounded_celda_teclado"
+                android:textColor="@color/colorLetrasTeclado"
+                tools:text="O" />
+
+            <TextView
+                style="@style/CeldaVacia"
+                android:background="@drawable/rounded_celda_teclado"
+                android:textColor="@color/colorLetrasTeclado"
+                tools:text="P" />
+
+            <TextView
+                style="@style/CeldaVacia"
+                android:background="@drawable/rounded_celda_teclado"
+                android:textColor="@color/colorLetrasTeclado"
+                tools:text="Q" />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center">
+
+            <TextView
+                style="@style/CeldaVacia"
+                android:background="@drawable/rounded_celda_teclado"
+                android:textColor="@color/colorLetrasTeclado"
+                tools:text="R" />
+
+            <TextView
+                style="@style/CeldaVacia"
+                android:background="@drawable/rounded_celda_teclado"
+                android:textColor="@color/colorLetrasTeclado"
+                tools:text="S" />
+
+            <TextView
+                style="@style/CeldaVacia"
+                android:background="@drawable/rounded_celda_teclado"
+                android:textColor="@color/colorLetrasTeclado"
+                tools:text="T" />
+
+            <TextView
+                style="@style/CeldaVacia"
+                android:background="@drawable/rounded_celda_teclado"
+                android:textColor="@color/colorLetrasTeclado"
+                tools:text="U" />
+
+            <TextView
+                style="@style/CeldaVacia"
+                android:background="@drawable/rounded_celda_teclado"
+                android:textColor="@color/colorLetrasTeclado"
+                tools:text="V" />
+
+            <TextView
+                style="@style/CeldaVacia"
+                android:background="@drawable/rounded_celda_teclado"
+                android:textColor="@color/colorLetrasTeclado"
+                tools:text="W" />
+
+            <TextView
+                style="@style/CeldaVacia"
+                android:background="@drawable/rounded_celda_teclado"
+                android:textColor="@color/colorLetrasTeclado"
+                tools:text="X" />
+
+            <TextView
+                style="@style/CeldaVacia"
+                android:background="@drawable/rounded_celda_teclado"
+                android:textColor="@color/colorLetrasTeclado"
+                tools:text="Y" />
+
+            <TextView
+                style="@style/CeldaVacia"
+                android:background="@drawable/rounded_celda_teclado"
+                android:textColor="@color/colorLetrasTeclado"
+                tools:text="Z" />
+
+        </TableRow>
+
+    </TableLayout>
+
+</FrameLayout>

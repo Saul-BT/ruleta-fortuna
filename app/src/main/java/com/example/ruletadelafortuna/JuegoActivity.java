@@ -175,7 +175,7 @@ public class JuegoActivity extends AppCompatActivity implements Animation.Animat
         }
     }
 
-    /*
+
     protected void llamarFragmentTeclado(View v){
 
 
@@ -211,7 +211,7 @@ public class JuegoActivity extends AppCompatActivity implements Animation.Animat
 
             return view;
 
-        }*/
+        }
 
-
+    }
 }
