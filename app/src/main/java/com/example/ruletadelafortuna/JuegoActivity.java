@@ -5,10 +5,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
-import android.graphics.Color;
 import android.graphics.drawable.GradientDrawable;
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.os.Handler;
 import android.os.Parcelable;
 import android.speech.RecognizerIntent;
 import android.view.View;
@@ -16,7 +16,6 @@ import android.view.animation.Animation;
 import android.view.animation.DecelerateInterpolator;
 import android.view.animation.RotateAnimation;
 import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TableLayout;
 import android.widget.TextView;
@@ -28,18 +27,20 @@ import java.util.Random;
 
 public class JuegoActivity extends AppCompatActivity implements Animation.AnimationListener {
 
-    int grados = 0;
-    Panel panel;
-    boolean girando;
-    Button b_Start;
-    ImageView ruletaImg;
-    TextView etiNarrador;
-    Jugador[] jugadores;
+    private Handler mHandler;
+
+    private int grados = 0;
+    private Panel panel;
+    private boolean girando;
+    private Button b_Start;
+    private ImageView ruletaImg;
+    private TextView etiNarrador;
+    private Jugador[] jugadores;
 
 
-    TextView scorePlayer1;
-    TextView scorePlayer2;
-    TextView scorePlayer3;
+    private TextView scorePlayer1;
+    private TextView scorePlayer2;
+    private TextView scorePlayer3;
 
     // Pasar a enum
     Gajo[] gajos = {
@@ -71,6 +72,7 @@ public class JuegoActivity extends AppCompatActivity implements Animation.Animat
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_juego);
+        mHandler = new Handler();
         Bundle playersBundle = getIntent().getExtras();
 
         // Estableciendo nombre y avatar a los concursantes
@@ -122,17 +124,18 @@ public class JuegoActivity extends AppCompatActivity implements Animation.Animat
     }
 
     private void decideTurno() {
-        int[] codigosColorAvatar = {
-                this.getResources().getColor(R.color.colorJugador1),
-                this.getResources().getColor(R.color.colorJugador2),
-                this.getResources().getColor(R.color.colorJugador3),
+        int codMorado = this.getResources().getColor(R.color.colorMorado);
+        int[][] codigosColorAvatar = {
+                {codMorado, this.getResources().getColor(R.color.colorJugador1)},
+                {codMorado, this.getResources().getColor(R.color.colorJugador2)},
+                {codMorado, this.getResources().getColor(R.color.colorJugador3)},
         };
         GradientDrawable fondo = (GradientDrawable) b_Start.getBackground();
 
         for (int i = 0; i < jugadores.length; i++) {
             if (jugadores[i].esJugadorActual) {
                 etiNarrador.setText("Tu turno " + jugadores[i].nombre);
-                fondo.setColors(new int[] {codigosColorAvatar[i], codigosColorAvatar[i]});
+                fondo.setColors(codigosColorAvatar[i]);
 
                 jugadores[i].esJugadorActual = false;
                 jugadores[(i + 1) % jugadores.length].esJugadorActual = true;
@@ -190,7 +193,6 @@ public class JuegoActivity extends AppCompatActivity implements Animation.Animat
                     Toast.LENGTH_SHORT).show();
         }
         girando = false;
-        decideTurno();
     }
 
     @Override
@@ -217,6 +219,11 @@ public class JuegoActivity extends AppCompatActivity implements Animation.Animat
                         mensaje = "Hay "+nCoincidencias+" "+letra;
 
                     etiNarrador.setText(mensaje);
+                    mHandler.postDelayed(new Runnable() {
+                        public void run() {
+                            decideTurno();
+                        }
+                    }, 2000);
                 }
                 break;
             }

@@ -7,6 +7,7 @@
     <color name="textColor">#DDE5F1</color>
     <color name="hintColor">#8A98B4</color>
     <color name="backgroundColor">#3A506B</color>
+    <color name="colorMorado">@android:color/holo_purple</color>
     <color name="colorCeldaVacia">#3B4779</color>
     <color name="colorCeldaConLetra">#ACACAC</color>
     <color name="colorTextoCeldaConLetra">#555555</color>
