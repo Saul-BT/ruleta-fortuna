@@ -1,14 +1,17 @@
 package com.example.ruletadelafortuna;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.os.PersistableBundle;
 import android.speech.RecognizerIntent;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -81,9 +84,23 @@ public class JuegoActivity extends AppCompatActivity implements Animation.Animat
         ruletaImg = findViewById(R.id.RuletaImagen);
         etiNarrador = findViewById(R.id.tvMensajePresentador);
 
+
+        //Botón para abrir el teclado
+        Button button;
+        button = findViewById(R.id.bAbrirTeclado);
+        button.setOnClickListener(new View.OnClickListener(){
+        //Cuando hacemos click en el botón del activity juego, nos abrirá el teclado
+            @Override
+            public void onClick(View v){
+                FragmentManager fm = getSupportFragmentManager();
+                Teclado fragment = new Teclado();
+                fm.beginTransaction().replace(R.id.mantica,fragment).commit();
+            }});
+
         // Creando el panel y estableciendo la pista
         panel = new Panel(this);
         ((TextView) findViewById(R.id.tvPista)).setText(panel.getPistaActual());
+
 
         try {
             panel.rellenaPanel((TableLayout) findViewById(R.id.tlPanel));
@@ -176,42 +193,5 @@ public class JuegoActivity extends AppCompatActivity implements Animation.Animat
     }
 
 
-    protected void llamarFragmentTeclado(View v){
 
-
-    }
-
-    public class LlamarTeclado extends Fragment {
-
-        Button Babrirteclado;
-
-        @Override
-        public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                                 Bundle savedInstanceState) {
-            // Inflate the layout for this fragment
-            //return inflater.inflate(R.layout.fragment_dimension, container, false);
-
-            View view = inflater.inflate(R.layout.fragment_teclado, container, false);
-
-            Babrirteclado = (Button) view.findViewById(R.id.bAbrirTeclado);
-            Babrirteclado.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Fragment nuevoFragmento = new Teclado();
-                    FragmentTransaction transaction = getFragmentManager().beginTransaction();
-                    transaction.replace(R.id.mantica, nuevoFragmento);
-                    transaction.addToBackStack(null);
-
-                    // Commit a la transacción
-                    transaction.commit();
-
-                }
-            });
-
-
-            return view;
-
-        }
-
-    }
 }
