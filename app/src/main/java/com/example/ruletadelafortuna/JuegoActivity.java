@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Parcelable;
 import android.speech.RecognizerIntent;
+import android.util.Log;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.DecelerateInterpolator;
@@ -29,13 +30,17 @@ public class JuegoActivity extends AppCompatActivity implements Animation.Animat
 
     private Handler mHandler;
 
+    private Gajo gajoActual;
     private int grados = 0;
     private Panel panel;
     private boolean girando;
     private Button bTirar;
     private ImageView ruletaImg;
     private TextView etiNarrador;
+
+    private int posJugadorActual;
     private Jugador[] jugadores;
+    private TextView[] tvScores;
 
 
     private TextView scorePlayer1;
@@ -89,9 +94,12 @@ public class JuegoActivity extends AppCompatActivity implements Animation.Animat
         };
 
         Parcelable[] jugadoresParcel = (Parcelable[]) playersBundle.get("Jugadores");
-        ((Jugador) jugadoresParcel[0]).esJugadorActual = true;
+        Jugador primerJugador = (Jugador) jugadoresParcel[0];
+
+        this.posJugadorActual = 0;
         this.jugadores = new Jugador[jugadoresParcel.length];
 
+        // Estableciendo nombres y avatares a los jugadores
         for (int i = 0; i < jugadoresParcel.length; i++) {
             Jugador jugador = (Jugador) jugadoresParcel[i];
             jugadores[i] = jugador;
@@ -99,10 +107,12 @@ public class JuegoActivity extends AppCompatActivity implements Animation.Animat
             tvPlayers[i].setText(jugador.getNombre());
             playerAvatars[i].setImageDrawable(getResources().getDrawable(jugador.getAvatar()));
         }
-        
-        scorePlayer1 = findViewById(R.id.scorePlayer1);
-        scorePlayer2 = findViewById(R.id.scorePlayer2);
-        scorePlayer3 = findViewById(R.id.scorePlayer3);
+
+        tvScores = new TextView[]{
+                findViewById(R.id.scorePlayer1),
+                findViewById(R.id.scorePlayer2),
+                findViewById(R.id.scorePlayer3),
+        };
 
         bTirar = findViewById(R.id.bTiraRuleta);
         ruletaImg = findViewById(R.id.RuletaImagen);
@@ -131,19 +141,21 @@ public class JuegoActivity extends AppCompatActivity implements Animation.Animat
                 {codMorado, this.getResources().getColor(R.color.colorJugador3)},
         };
         GradientDrawable fondo = (GradientDrawable) bTirar.getBackground();
+        Jugador jugadorActual = jugadores[posJugadorActual];
 
-        for (int i = 0; i < jugadores.length; i++) {
-            if (jugadores[i].esJugadorActual) {
-                etiNarrador.setText("Tu turno " + jugadores[i].nombre);
-                fondo.setColors(codigosColorAvatar[i]);
-                jugadores[i].tirarRuleta(bTirar);
+        etiNarrador.setText("Tu turno " + jugadorActual.nombre);
+        fondo.setColors(codigosColorAvatar[posJugadorActual]);
 
-                jugadores[i].esJugadorActual = false;
-                jugadores[(i + 1) % jugadores.length].esJugadorActual = true;
-                break;
-            }
-        }
+        jugadorActual.tirarRuleta(bTirar);
     }
+
+
+    private int obtenerRemuneracion(int numLetras) {
+        int dineroGanado = 0;
+
+        return dineroGanado;
+    }
+
 
     public void onClickButtonRotation(View v){
         if (girando) return;
@@ -176,24 +188,28 @@ public class JuegoActivity extends AppCompatActivity implements Animation.Animat
 
     @Override
     public void onAnimationEnd(Animation animation) {
-        Gajo gajoActual = gajos[grados / 15];
+        gajoActual = gajos[grados / 15];
+        Jugador jugadorActual = jugadores[posJugadorActual];
 
-        Toast.makeText(this, "Has caido en "+gajoActual.getValor(),
-                Toast.LENGTH_LONG).show();
+        /*Toast.makeText(this, "Has caido en "+gajoActual.getValor(),
+                Toast.LENGTH_LONG).show();*/
 
-        Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
-        intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL,
-                RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
-        intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, Locale.getDefault());
-        intent.putExtra(RecognizerIntent.EXTRA_PROMPT, "Pide una letra");
-        try {
-            startActivityForResult(intent, 2);
-        } catch (ActivityNotFoundException a) {
-            Toast.makeText(getApplicationContext(),
-                    "Tu dispositivo es un plátano",
-                    Toast.LENGTH_SHORT).show();
-        }
         girando = false;
+
+        if (jugadorActual instanceof Humano)
+            ((Humano) jugadorActual).pedirLetraPorMicrofono(this);
+
+        else ((Bot) jugadorActual).pedirLetra(panel, etiNarrador);
+
+        if (jugadores[posJugadorActual] instanceof Bot) {
+            mHandler.postDelayed(new Runnable() {
+                public void run() {
+                    decideTurno();
+                }
+            }, 2000);
+        }
+
+        posJugadorActual = (posJugadorActual + 1) % jugadores.length;
     }
 
     @Override

@@ -1,16 +1,20 @@
 package com.example.ruletadelafortuna;
 
+import android.content.Context;
 import android.os.Parcelable;
 import android.widget.Button;
 
-public abstract class Jugador implements Parcelable {
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModel;
+
+public abstract class Jugador extends ViewModel implements Parcelable {
     String nombre;
     int avatarId;
 
     public int dineroGanado = 0;
-    public boolean esJugadorActual = false;
 
     abstract public void tirarRuleta(Button bTirar);
+
     public String getNombre() { return nombre; }
     public int getAvatar() { return avatarId; }
 }

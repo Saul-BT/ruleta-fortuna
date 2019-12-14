@@ -2,6 +2,9 @@ package com.example.ruletadelafortuna;
 
 import android.os.Parcel;
 import android.widget.Button;
+import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -36,6 +39,21 @@ public class Bot extends Jugador {
         bTirar.performClick();
     }
 
+    public int pedirLetra(Panel panel, TextView narrador) {
+        String mensaje;
+        char[] consonantes = "BCDFGHJKLMÑNPQRSTVWXYZ".toCharArray();
+        char consonanteAlAzar = consonantes[(int) (Math.random() * consonantes.length)];
+        int nCoincidencias = panel.revelaLetra(String.valueOf(consonanteAlAzar));
+
+        if (nCoincidencias == -1)
+            mensaje = "La " +consonanteAlAzar+" ya se ha dicho";
+        else
+            mensaje = "Hay "+nCoincidencias+" "+consonanteAlAzar;
+
+        narrador.setText(mensaje);
+        return nCoincidencias;
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -46,14 +64,12 @@ public class Bot extends Jugador {
         dest.writeString(this.nombre);
         dest.writeInt(this.avatarId);
         dest.writeInt(this.dineroGanado);
-        dest.writeByte(this.esJugadorActual ? (byte) 1 : (byte) 0);
     }
 
     protected Bot(Parcel in) {
         this.nombre = in.readString();
         this.avatarId = in.readInt();
         this.dineroGanado = in.readInt();
-        this.esJugadorActual = in.readByte() != 0;
     }
 
     public static final Creator<Bot> CREATOR = new Creator<Bot>() {
