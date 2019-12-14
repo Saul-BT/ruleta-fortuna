@@ -1,7 +1,6 @@
 package com.example.ruletadelafortuna;
 
 import android.content.ActivityNotFoundException;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Parcel;
 import android.speech.RecognizerIntent;
