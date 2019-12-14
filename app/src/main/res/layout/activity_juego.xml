@@ -184,16 +184,19 @@
         </TableRow>
     </TableLayout>
 
-    <ImageButton
+    <Button
         android:id="@+id/bTiraRuleta"
-        android:layout_width="90dp"
-        android:layout_height="90dp"
-        android:background="@drawable/boton_tirar"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:background="@drawable/circle_boton_tirar"
         android:onClick="onClickButtonRotation"
-        app:layout_constraintBottom_toBottomOf="@+id/RuletaImagen"
-        app:layout_constraintEnd_toEndOf="@+id/RuletaImagen"
-        app:layout_constraintStart_toStartOf="@+id/RuletaImagen"
-        app:layout_constraintTop_toTopOf="@+id/RuletaImagen" />
+        android:text="Tira"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/mantica"
+        app:layout_constraintEnd_toEndOf="@+id/mantica"
+        app:layout_constraintStart_toStartOf="@+id/mantica"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     <TextView
         android:id="@+id/textView"
@@ -225,8 +228,7 @@
             <ImageView
                 android:id="@+id/avatarPlayer1"
                 android:layout_width="50sp"
-                android:layout_height="50sp"
-                android:background="@drawable/avatar_femenino" />
+                android:layout_height="50sp" />
 
             <TextView
                 android:id="@+id/nombrePlayer1"
@@ -234,7 +236,7 @@
                 android:layout_height="wrap_content"
                 android:text="Clara"
                 android:textAlignment="center"
-                android:textColor="@color/colorJugador1"
+                android:textColor="#2196F3"
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
@@ -244,8 +246,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
-                android:background="@color/colorJugador1"
-                android:text="150"
+                android:background="#2196F3"
+                android:text="0"
                 android:textAlignment="center"
                 android:textColor="#FFFFFF" />
         </LinearLayout>
@@ -260,8 +262,7 @@
             <ImageView
                 android:id="@+id/avatarPlayer2"
                 android:layout_width="50sp"
-                android:layout_height="50sp"
-                android:background="@drawable/avatar_masculino" />
+                android:layout_height="50sp" />
 
             <TextView
                 android:id="@+id/nombrePlayer2"
@@ -269,7 +270,7 @@
                 android:layout_height="wrap_content"
                 android:text="Juan"
                 android:textAlignment="center"
-                android:textColor="@color/colorJugador2"
+                android:textColor="#F44336"
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
@@ -279,8 +280,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
-                android:background="@color/colorJugador2"
-                android:text="2000"
+                android:background="#F44336"
+                android:text="0"
                 android:textAlignment="center"
                 android:textColor="#FFFFFF" />
         </LinearLayout>
@@ -295,8 +296,7 @@
             <ImageView
                 android:id="@+id/avatarPlayer3"
                 android:layout_width="50sp"
-                android:layout_height="50sp"
-                android:background="@drawable/avatar_robot" />
+                android:layout_height="50sp" />
 
             <TextView
                 android:id="@+id/nombrePlayer3"
@@ -304,7 +304,7 @@
                 android:layout_height="wrap_content"
                 android:text="Bender"
                 android:textAlignment="center"
-                android:textColor="@color/colorJugador3"
+                android:textColor="#FF9800"
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
@@ -314,8 +314,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
-                android:background="@color/colorJugador3"
-                android:text="300"
+                android:background="#FF9800"
+                android:text="0"
                 android:textAlignment="center"
                 android:textColor="#FFFFFF" />
         </LinearLayout>

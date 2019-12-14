@@ -2,8 +2,6 @@ package com.example.ruletadelafortuna;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
 
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
@@ -11,9 +9,7 @@ import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.speech.RecognizerIntent;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.DecelerateInterpolator;
 import android.view.animation.RotateAnimation;
@@ -33,7 +29,7 @@ public class JuegoActivity extends AppCompatActivity implements Animation.Animat
     int grados = 0;
     Panel panel;
     boolean girando;
-    ImageButton b_Start;
+    Button b_Start;
     ImageView ruletaImg;
     TextView etiNarrador;
 
@@ -174,44 +170,4 @@ public class JuegoActivity extends AppCompatActivity implements Animation.Animat
             }
         }
     }
-
-    /*
-    protected void llamarFragmentTeclado(View v){
-
-
-    }
-
-    public class LlamarTeclado extends Fragment {
-
-        Button Babrirteclado;
-
-        @Override
-        public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                                 Bundle savedInstanceState) {
-            // Inflate the layout for this fragment
-            //return inflater.inflate(R.layout.fragment_dimension, container, false);
-
-            View view = inflater.inflate(R.layout.fragment_teclado, container, false);
-
-            Babrirteclado = (Button) view.findViewById(R.id.bAbrirTeclado);
-            Babrirteclado.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Fragment nuevoFragmento = new Teclado();
-                    FragmentTransaction transaction = getFragmentManager().beginTransaction();
-                    transaction.replace(R.id.mantica, nuevoFragmento);
-                    transaction.addToBackStack(null);
-
-                    // Commit a la transacción
-                    transaction.commit();
-
-                }
-            });
-
-
-            return view;
-
-        }*/
-
-
 }
