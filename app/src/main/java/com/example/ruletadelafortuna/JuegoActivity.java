@@ -38,6 +38,7 @@ public class JuegoActivity extends AppCompatActivity implements Animation.Animat
     private Jugador[] jugadores;
     private TextView[] tvScores;
 
+    private int numLetrasReveladas;
 
     private TextView scorePlayer1;
     private TextView scorePlayer2;
@@ -74,36 +75,6 @@ public class JuegoActivity extends AppCompatActivity implements Animation.Animat
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_juego);
         mHandler = new Handler();
-        Bundle playersBundle = getIntent().getExtras();
-
-        // Estableciendo nombre y avatar a los concursantes
-        TextView[] tvPlayers = {
-                findViewById(R.id.nombrePlayer1),
-                findViewById(R.id.nombrePlayer2),
-                findViewById(R.id.nombrePlayer3),
-        };
-
-        ImageView[] playerAvatars = {
-                findViewById(R.id.avatarPlayer1),
-                findViewById(R.id.avatarPlayer2),
-                findViewById(R.id.avatarPlayer3),
-        };
-
-        Parcelable[] jugadoresParcel = (Parcelable[]) playersBundle.get("Jugadores");
-        Jugador primerJugador = (Jugador) jugadoresParcel[0];
-
-        this.posJugadorActual = 0;
-        this.jugadores = new Jugador[jugadoresParcel.length];
-
-        // Estableciendo nombres y avatares a los jugadores
-        for (int i = 0; i < jugadoresParcel.length; i++) {
-            Jugador jugador = (Jugador) jugadoresParcel[i];
-            jugadores[i] = jugador;
-
-            tvPlayers[i].setText(jugador.getNombre());
-            playerAvatars[i].setImageDrawable(getResources().getDrawable(jugador.getAvatar()));
-        }
-
         tvScores = new TextView[]{
                 findViewById(R.id.scorePlayer1),
                 findViewById(R.id.scorePlayer2),
@@ -114,7 +85,9 @@ public class JuegoActivity extends AppCompatActivity implements Animation.Animat
         ruletaImg = findViewById(R.id.RuletaImagen);
         etiNarrador = findViewById(R.id.tvMensajePresentador);
 
-        decideTurno();
+        // Para que decideTurno tome el primer jugador al inicio
+        // la variable posJugadorActual debe ser -1
+        this.posJugadorActual = -1;
 
         // Creando el panel y estableciendo la pista
         panel = new Panel(this);
@@ -127,9 +100,47 @@ public class JuegoActivity extends AppCompatActivity implements Animation.Animat
             new AlertDialog.Builder(this)
                     .setTitle("Error").setMessage(e.getMessage()).create().show();
         }
+
+        Bundle playersBundle = getIntent().getExtras();
+
+        setupPayers(playersBundle);
+        decideTurno();
     }
 
+
+    // Metodo que da estado inicial a los jugadores (avatares y tal)
+    private void setupPayers(Bundle playersBundle) {
+        // Estableciendo nombre y avatar a los concursantes
+        TextView[] tvPlayers = {
+                findViewById(R.id.nombrePlayer1),
+                findViewById(R.id.nombrePlayer2),
+                findViewById(R.id.nombrePlayer3),
+        };
+        ImageView[] playerAvatars = {
+                findViewById(R.id.avatarPlayer1),
+                findViewById(R.id.avatarPlayer2),
+                findViewById(R.id.avatarPlayer3),
+        };
+
+        Parcelable[] jugadoresParcel = (Parcelable[]) playersBundle.get("Jugadores");
+        Jugador primerJugador = (Jugador) jugadoresParcel[0];
+        this.jugadores = new Jugador[jugadoresParcel.length];
+
+        // Estableciendo nombres y avatares a los jugadores
+        for (int i = 0; i < jugadoresParcel.length; i++) {
+            Jugador jugador = (Jugador) jugadoresParcel[i];
+            jugadores[i] = jugador;
+
+            tvPlayers[i].setText(jugador.getNombre());
+            playerAvatars[i].setImageDrawable(getResources().getDrawable(jugador.getAvatar()));
+        }
+    }
+
+
+    // Metodo que establece el siguiente turno
     private void decideTurno() {
+        posJugadorActual = (posJugadorActual + 1) % jugadores.length;
+
         int codMorado = this.getResources().getColor(R.color.colorMorado);
         int[][] codigosColorAvatar = {
                 {codMorado, this.getResources().getColor(R.color.colorJugador1)},
@@ -146,10 +157,45 @@ public class JuegoActivity extends AppCompatActivity implements Animation.Animat
     }
 
 
-    private int obtenerRemuneracion(int numLetras) {
-        int dineroGanado = 0;
+    // Metodo que administra el turno del jugador actual
+    private void procesaTurno() {
+        Jugador jugadorActual = jugadores[posJugadorActual];
 
-        return dineroGanado;
+        switch (gajoActual) {
+            case QUIEBRA: jugadorActual.dineroGanado = 0;
+            case PIERDE_TURNO: {
+                mHandler.postDelayed(new Runnable() {
+                    public void run() { decideTurno(); }
+                }, 2000);
+                tvScores[posJugadorActual].setText(String.valueOf(jugadorActual.dineroGanado));
+                return;
+            }
+        }
+
+        if (jugadorActual instanceof Humano) {
+            ((Humano) jugadorActual).pedirLetraPorMicrofono(this);
+        }
+        else {
+            numLetrasReveladas = ((Bot) jugadorActual).pedirLetra(panel, etiNarrador);
+            procesaPuntos();
+            mHandler.postDelayed(new Runnable() {
+                public void run() { decideTurno(); }
+            }, 2000);
+        }
+    }
+
+
+    // Metodo que establece la pasta del jugador a partir del valor (numérico) del gajo
+    private void procesaPuntos() {
+        Jugador jugadorActual = jugadores[posJugadorActual];
+
+        if (numLetrasReveladas != -1) {
+            if (gajoActual.getValor() instanceof Integer) {
+                jugadorActual.dineroGanado += ((Integer) gajoActual.getValor()) * numLetrasReveladas;
+            }
+        }
+
+        tvScores[posJugadorActual].setText(String.valueOf(jugadorActual.dineroGanado));
     }
 
 
@@ -185,27 +231,12 @@ public class JuegoActivity extends AppCompatActivity implements Animation.Animat
     @Override
     public void onAnimationEnd(Animation animation) {
         gajoActual = gajos[grados / 15];
-        Jugador jugadorActual = jugadores[posJugadorActual];
 
         /*Toast.makeText(this, "Has caido en "+gajoActual.getValor(),
                 Toast.LENGTH_LONG).show();*/
 
         girando = false;
-
-        if (jugadorActual instanceof Humano)
-            ((Humano) jugadorActual).pedirLetraPorMicrofono(this);
-
-        else ((Bot) jugadorActual).pedirLetra(panel, etiNarrador);
-
-        if (jugadores[posJugadorActual] instanceof Bot) {
-            mHandler.postDelayed(new Runnable() {
-                public void run() {
-                    decideTurno();
-                }
-            }, 2000);
-        }
-
-        posJugadorActual = (posJugadorActual + 1) % jugadores.length;
+        procesaTurno();
     }
 
     @Override
@@ -224,18 +255,17 @@ public class JuegoActivity extends AppCompatActivity implements Animation.Animat
 
                     String mensaje;
                     String letra = String.valueOf(result.get(0).charAt(0));
-                    int nCoincidencias = panel.revelaLetra(letra);
+                    numLetrasReveladas = panel.revelaLetra(letra);
 
-                    if (nCoincidencias == -1)
+                    if (numLetrasReveladas == -1)
                         mensaje = "La " +letra+" ya se ha dicho";
                     else
-                        mensaje = "Hay "+nCoincidencias+" "+letra;
+                        mensaje = "Hay "+numLetrasReveladas+" "+letra;
 
                     etiNarrador.setText(mensaje);
+                    procesaPuntos();
                     mHandler.postDelayed(new Runnable() {
-                        public void run() {
-                            decideTurno();
-                        }
+                        public void run() { decideTurno(); }
                     }, 2000);
                 }
                 break;
