@@ -23,6 +23,27 @@
         <item>Lo dijo Nietzsche</item>
         <item>Lo canta Marc Anthony</item>
         <item>Misión imposible</item>
+        <item>Refrán fresquito</item>
+        <item>De la película Alejandro Magno...</item>
+        <item>Fenómenos atmosféricos</item>
+        <item>Poco afortunado pero...</item>
+        <item>Proverbio Kurdo</item>
+        <item>Concepcion Arenal</item>
+        <item>Proverbio Escocés</item>
+        <item>Refrán hambriento</item>
+        <item>No seas rata...</item>
+        <item>Mi familia ooooh</item>
+        <item>Tengo mucho hambre</item>
+        <item>Cuando sales de fiesta</item>
+        <item>No leas tanto...</item>
+        <item>Por levantarte temprano</item>
+        <item>Me extinguiré?</item>
+        <item>Un pcoo loco</item>
+        <item>Come fruta</item>
+        <item>En la habitación blanca</item>
+        <item>Las Ketchup</item>
+        <item>Hidrogenesse</item>
+        <item>Zapato veloz</item>
     </string-array>
 
     <string-array name="frases">
@@ -48,5 +69,26 @@
         <item>Sin musica, la vida perderia sentido</item>
         <item>Escuchar el silencio, para encontrar el camino</item>
         <item>Que en la administración te atiendan sin cita</item>
+        <item>Año de nieves, año de bienes</item>
+        <item>La fortuna favorece a los más audaces</item>
+        <item>Viento, mujer y fortuna, mudables como la luna</item>
+        <item>Si la fortuna te da la espalda, tócale el culo</item>
+        <item>Quien tiene miedo tiene desgracia</item>
+        <item>Abrid escuelas y se cerrarán cárceles</item>
+        <item>Nunca dejes que tus pies adelanten a tus zapatos</item>
+        <item>A beber y a tragar, que el mundo se ha de acabar</item>
+        <item>Paga lo que debes, sanarás del mal que tienes</item>
+        <item>El verdadero hogar es donde uno tiene a los suyos</item>
+        <item>Voy a donde sea si hay comida</item>
+        <item>Sé que el alcohol me hace daño pero ya lo perdoné</item>
+        <item>El dia que leí que el alcohol era malo deje de leer</item>
+        <item>El que madruga encuentra todo cerrado</item>
+        <item>Yo en peligro de extinción y tu desaprovechandome</item>
+        <item>Me voy de aqui todos están locos, arre unicornio</item>
+        <item>Dios creo la manzana fue para que nos la comamos</item>
+        <item>I wait in this place where the sun never shines</item>
+        <item>Aserejé,ja deje tejebe tude jebere Sebiunouba</item>
+        <item>Preguntaron de dónde venía y dijo: de su casa</item>
+        <item>Un tractor amarillo,es lo que se lleva ahora</item>
     </string-array>
 </resources>
