@@ -3,6 +3,8 @@ package com.example.ruletadelafortuna;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.ActivityNotFoundException;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.drawable.GradientDrawable;
 import android.media.MediaPlayer;
@@ -10,6 +12,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Parcelable;
 import android.speech.RecognizerIntent;
+import android.util.Log;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.DecelerateInterpolator;
@@ -18,18 +21,21 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TableLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import java.text.Collator;
 import java.util.ArrayList;
+import java.util.Locale;
 import java.util.Random;
 
 public class JuegoActivity extends AppCompatActivity implements Animation.AnimationListener {
 
     private Handler mHandler;
 
-    private Gajo gajoActual;
     private int grados = 0;
-    private Panel panel;
     private boolean girando;
+    private Gajo gajoActual;
+    private Panel panel;
     private Button bTirar;
     private ImageView ruletaImg;
     private TextView etiNarrador;
@@ -40,35 +46,16 @@ public class JuegoActivity extends AppCompatActivity implements Animation.Animat
 
     private int numLetrasReveladas;
 
-    private TextView scorePlayer1;
-    private TextView scorePlayer2;
-    private TextView scorePlayer3;
-
-    // Pasar a enum
     Gajo[] gajos = {
-            Gajo.GRAN_PREMIO, Gajo.CIEN, Gajo.AYUDA_FINAL,
+            Gajo.SETENTA_Y_CINCO, Gajo.CIEN, Gajo.CINCUENTA,
             Gajo.QUIEBRA, Gajo.VEINTICINCO, Gajo.CERO,
-            Gajo.CINCUENTA, Gajo.COMODIN, Gajo.INTERROGACION,
-            Gajo.PIERDE_TURNO, Gajo.SETENTA_Y_CINCO, Gajo.ME_LO_QUEDO,
-            Gajo.CIEN, Gajo.SETENTA_Y_CINCO, Gajo.PREMIO,
-            Gajo.QUIEBRA, Gajo.DOBLE_LETRA, Gajo.SETENTA_Y_CINCO,
+            Gajo.CINCUENTA, Gajo.CIENTO_CINCUENTA, Gajo.SETENTA_Y_CINCO,
+            Gajo.PIERDE_TURNO, Gajo.SETENTA_Y_CINCO, Gajo.CERO,
+            Gajo.CIEN, Gajo.SETENTA_Y_CINCO, Gajo.SETENTA_Y_CINCO,
+            Gajo.QUIEBRA, Gajo.CIENTO_CINCUENTA, Gajo.SETENTA_Y_CINCO,
             Gajo.CIENTO_CINCUENTA, Gajo.CINCUENTA, Gajo.SETENTA_Y_CINCO,
-            Gajo.PIERDE_TURNO, Gajo.CIENTO_CINCUENTA, Gajo.GRAN_PREMIO,
+            Gajo.PIERDE_TURNO, Gajo.CIENTO_CINCUENTA, Gajo.CERO,
     };
-
-    /**
-     private String premios[] =
-     {       "Kit de cocina valorado en 200€",
-     "Playstation 4",
-     "XBOX 360",
-     "IPHONE X",
-     "Ordenador GAMING valorado en 1000€",
-     "Viaje valorado en 500€",
-     "Coche valorado en 8000€",
-     "Tablet valorada en 200€",
-     "Colchón LOMONACO valorada en 500€",
-     "Televisión valorada en 600€"};
-     */
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -178,9 +165,6 @@ public class JuegoActivity extends AppCompatActivity implements Animation.Animat
         else {
             numLetrasReveladas = ((Bot) jugadorActual).pedirLetra(panel, etiNarrador);
             procesaPuntos();
-            mHandler.postDelayed(new Runnable() {
-                public void run() { decideTurno(); }
-            }, 2000);
         }
     }
 
@@ -189,12 +173,18 @@ public class JuegoActivity extends AppCompatActivity implements Animation.Animat
     private void procesaPuntos() {
         Jugador jugadorActual = jugadores[posJugadorActual];
 
-        if (numLetrasReveladas != -1) {
+        if (numLetrasReveladas > 0) {
             if (gajoActual.getValor() instanceof Integer) {
-                jugadorActual.dineroGanado += ((Integer) gajoActual.getValor()) * numLetrasReveladas;
+                int valorGajo = (Integer) gajoActual.getValor();
+                jugadorActual.dineroGanado += valorGajo * numLetrasReveladas;
             }
+            jugadorActual.tirarRuleta(bTirar);
         }
-
+        else {
+            mHandler.postDelayed(new Runnable() {
+                public void run() { decideTurno(); }
+            }, 2000);
+        }
         tvScores[posJugadorActual].setText(String.valueOf(jugadorActual.dineroGanado));
     }
 
@@ -231,19 +221,15 @@ public class JuegoActivity extends AppCompatActivity implements Animation.Animat
     @Override
     public void onAnimationEnd(Animation animation) {
         gajoActual = gajos[grados / 15];
-
-        /*Toast.makeText(this, "Has caido en "+gajoActual.getValor(),
-                Toast.LENGTH_LONG).show();*/
-
         girando = false;
         procesaTurno();
     }
 
     @Override
-    public void onAnimationRepeat(Animation animation) {
+    public void onAnimationRepeat(Animation animation) { }
 
-    }
 
+    // Resultado del intent de grabación de voz
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -255,20 +241,94 @@ public class JuegoActivity extends AppCompatActivity implements Animation.Animat
 
                     String mensaje;
                     String letra = String.valueOf(result.get(0).charAt(0));
-                    numLetrasReveladas = panel.revelaLetra(letra);
+                    Jugador jugadorActual = jugadores[posJugadorActual];
 
+                    if (letra.matches("(?i)[AEIOU]")) {
+                        if(jugadorActual.dineroGanado > 50) {
+                            jugadorActual.dineroGanado -= 50;
+                            tvScores[posJugadorActual].setText(String.valueOf(jugadorActual.dineroGanado));
+                            numLetrasReveladas = panel.revelaLetra(letra);
+                        } else {
+                            etiNarrador.setText("No tienes suficiente dinero para comprar vocal");
+                        }
+                        return;
+                    }
+                    numLetrasReveladas = panel.revelaLetra(letra);
                     if (numLetrasReveladas == -1)
-                        mensaje = "La " +letra+" ya se ha dicho";
+                        mensaje = "La " + letra + " ya está en el panel";
                     else
-                        mensaje = "Hay "+numLetrasReveladas+" "+letra;
+                        mensaje = "Hay " + numLetrasReveladas + " " + letra;
 
                     etiNarrador.setText(mensaje);
+
                     procesaPuntos();
-                    mHandler.postDelayed(new Runnable() {
-                        public void run() { decideTurno(); }
-                    }, 2000);
                 }
                 break;
+            }
+            case 3: {
+                if (resultCode == RESULT_OK && data != null) {
+                    ArrayList<String> aproximaciones = data
+                            .getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
+                    String frasePanel = panel.getFraseActual()
+                            .replaceAll("[^\\w\\sÁÉÍÓÚáéíóú]", "");
+                    Collator espCollator = Collator.getInstance();
+                    espCollator.setStrength(Collator.PRIMARY);
+                    boolean panelResuelto = false;
+
+                    for (String frase : aproximaciones) {
+                        panelResuelto = panelResuelto ||
+                                0 == espCollator.compare(
+                                        frase.toLowerCase(), frasePanel.toLowerCase()
+                                );
+                    }
+
+                    if (panelResuelto) {
+                        panel.resolver();
+                        etiNarrador.setText("Enhorabuena "+
+                                jugadores[posJugadorActual].getNombre()+
+                                " has resuelto el panel!");
+                    }
+                    else {
+                        etiNarrador.setText("Casi lo tienes, ánimo");
+                    }
+                }
+            }
+        }
+    }
+
+
+    @Override
+    public void onBackPressed() {
+        new AlertDialog.Builder(this, android.R.style.Theme_Material_Dialog_Alert)
+            .setTitle("¿Estás seguro?")
+            .setMessage("El progreso de la partida actual se perderá")
+            .setPositiveButton("Sí", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    startActivity(new Intent(JuegoActivity.this, MainActivity.class));
+                }
+            })
+            .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) { }
+            })
+        .create().show();
+    }
+
+    public void resolver(View v) {
+        Jugador jugadorActual = jugadores[posJugadorActual];
+        if (jugadorActual instanceof Humano) {
+            Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
+            intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL,
+                    RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
+            intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, Locale.getDefault());
+            intent.putExtra(RecognizerIntent.EXTRA_PROMPT, "Pide una letra");
+            try {
+                startActivityForResult(intent, 3);
+            } catch (ActivityNotFoundException a) {
+                Toast.makeText(getApplicationContext(),
+                        "Tu dispositivo es un plátano",
+                        Toast.LENGTH_SHORT).show();
             }
         }
     }

@@ -3,6 +3,7 @@ package com.example.ruletadelafortuna;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -24,24 +25,17 @@ public class FormularioActivity extends AppCompatActivity {
         Intent i = new Intent(this, JuegoActivity.class);
 
         try {
-            /*String[] datosValidados = devolverDatosValidados();
-            boolean j2esBot = ((RadioButton) findViewById(R.id.rbDosJuagaores)).isChecked();
-            boolean j3esBot = ((RadioButton) findViewById(R.id.rbTresJugadores)).isChecked();
-
-            i.putExtra("player1", datosValidados[0]);
-            i.putExtra("player2", datosValidados[1]);
-            i.putExtra("player3", datosValidados[2]);
-
-            i.putExtra("player2esBot", j2esBot);
-            i.putExtra("player3esBot", j3esBot);*/
-
             Jugador[] jugadores = devolverDatosValidados();
             i.putExtra("Jugadores", jugadores);
 
             startActivity(i);
         } catch (Exception e) {
-            new AlertDialog.Builder(this)
-                    .setTitle("Error").setMessage(e.getMessage()).create().show();
+            new AlertDialog.Builder(this, android.R.style.Theme_Material_Dialog_Alert)
+                    .setTitle("Error").setMessage(e.getMessage())
+                    .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) { }
+                    }).create().show();
         }
     }
 

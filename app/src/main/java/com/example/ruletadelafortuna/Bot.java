@@ -39,12 +39,14 @@ public class Bot extends Jugador {
 
     public int pedirLetra(Panel panel, TextView narrador) {
         String mensaje;
-        char[] consonantes = "BCDFGHJKLMÑNPQRSTVWXYZ".toCharArray();
+        char[] consonantes = (
+                "DDDDDDDDDDMMMMMMMMGGGGGGGCCCCCCCLLLLLLNNNNNRRRRRSSSSSFFFFTTTTQQQPPPBBBÑHJKVWXYZ"
+        ).toCharArray();
         char consonanteAlAzar = consonantes[(int) (Math.random() * consonantes.length)];
         int nCoincidencias = panel.revelaLetra(String.valueOf(consonanteAlAzar));
 
         if (nCoincidencias == -1)
-            mensaje = "La " +consonanteAlAzar+" ya se ha dicho";
+            mensaje = "La " +consonanteAlAzar+" ya está en el panel";
         else
             mensaje = "Hay "+nCoincidencias+" "+consonanteAlAzar;
 
