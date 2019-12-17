@@ -86,7 +86,8 @@
                 android:layout_height="30dp"
                 android:layout_margin="5sp"
                 android:accessibilityLiveRegion="none"
-                android:background="@drawable/avatar_femenino"
+                android:button="@android:color/transparent"
+                android:background="@drawable/check_femenino"
                 android:singleLine="false" />
 
             <RadioButton
@@ -95,7 +96,8 @@
                 android:layout_height="30dp"
                 android:layout_margin="5sp"
                 android:accessibilityLiveRegion="none"
-                android:background="@drawable/avatar_masculino"
+                android:button="@android:color/transparent"
+                android:background="@drawable/check_masculino"
                 android:checked="true"
                 android:singleLine="false" />
         </RadioGroup>
@@ -131,7 +133,9 @@
                 android:layout_height="30dp"
                 android:layout_margin="5sp"
                 android:accessibilityLiveRegion="none"
-                android:background="@drawable/avatar_femenino"
+                android:button="@android:color/transparent"
+                android:background="@drawable/check_femenino"
+                android:checked="true"
                 android:singleLine="false" />
 
             <RadioButton
@@ -140,8 +144,8 @@
                 android:layout_height="30dp"
                 android:layout_margin="5sp"
                 android:accessibilityLiveRegion="none"
-                android:background="@drawable/avatar_masculino"
-                android:checked="true"
+                android:button="@android:color/transparent"
+                android:background="@drawable/check_masculino"
                 android:singleLine="false" />
         </RadioGroup>
     </LinearLayout>
@@ -175,7 +179,8 @@
                 android:layout_height="30dp"
                 android:layout_margin="5sp"
                 android:accessibilityLiveRegion="none"
-                android:background="@drawable/avatar_femenino"
+                android:button="@android:color/transparent"
+                android:background="@drawable/check_femenino"
                 android:singleLine="false" />
 
             <RadioButton
@@ -184,7 +189,8 @@
                 android:layout_height="30dp"
                 android:layout_margin="5sp"
                 android:accessibilityLiveRegion="none"
-                android:background="@drawable/avatar_masculino"
+                android:button="@android:color/transparent"
+                android:background="@drawable/check_masculino"
                 android:checked="true"
                 android:singleLine="false" />
         </RadioGroup>
