@@ -284,9 +284,22 @@ public class JuegoActivity extends AppCompatActivity implements Animation.Animat
 
                     if (panelResuelto) {
                         panel.resolver();
-                        etiNarrador.setText("Enhorabuena "+
-                                jugadores[posJugadorActual].getNombre()+
-                                " has resuelto el panel!");
+                        String nombreGranador = jugadores[posJugadorActual].getNombre();
+
+                        new AlertDialog.Builder(this, android.R.style.Theme_Material_Dialog_Alert)
+                                .setTitle(nombreGranador+" ganaste la partida \uD83E\uDD73")
+                                .setMessage("¿Empezamos una nueva partida?")
+                                .setPositiveButton("Sí :D", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) { finish(); }
+                                })
+                                .setNegativeButton("No D:", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        finishAffinity();
+                                    }
+                                })
+                                .create().show();
                     }
                     else {
                         etiNarrador.setText("Casi lo tienes, ánimo");
@@ -304,9 +317,7 @@ public class JuegoActivity extends AppCompatActivity implements Animation.Animat
             .setMessage("El progreso de la partida actual se perderá")
             .setPositiveButton("Sí", new DialogInterface.OnClickListener() {
                 @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    startActivity(new Intent(JuegoActivity.this, MainActivity.class));
-                }
+                public void onClick(DialogInterface dialog, int which) { finish(); }
             })
             .setNegativeButton("No", new DialogInterface.OnClickListener() {
                 @Override
