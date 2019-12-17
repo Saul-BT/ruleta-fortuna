@@ -14,7 +14,6 @@ public class Panel {
     private String fraseActual;
     private String pistaActual;
 
-    private int numLetrasReveladas;
     private final int MAX_LETRAS = 48;
 
     private JuegoActivity activity;
@@ -26,7 +25,6 @@ public class Panel {
     public Panel(JuegoActivity activity) {
         this.activity = activity;
         this.celdas =  new ArrayList<>();
-        this.numLetrasReveladas = 0;
 
         this.frases = new LinkedList<>(Arrays.asList(
                 this.activity.getResources().getStringArray(R.array.frases)));
@@ -68,7 +66,6 @@ public class Panel {
                 nLetras++;
             }
         }
-        numLetrasReveladas += nLetras;
         return nLetras;
     }
 
@@ -105,18 +102,21 @@ public class Panel {
             for (int j = 0; j < nCeldas; j++, n++) {
                 TextView celda = (TextView) row.getChildAt(j);
 
-                if (caracteres[n] != ' ')
+                if (caracteres[n] != ' ') {
                     celda.setBackground(this.activity.getResources().getDrawable(R.drawable.rounded_celda_con_letra));
-                else
-                    numLetrasReveladas++;
+
+                    if (String.valueOf(caracteres[n]).matches("[^\\w\\sÁÉÍÓÚáéíóú]"))
+                        celda.setTextColor(this.activity.getResources()
+                                .getColor(R.color.colorTextoCeldaConLetra));
+                }
 
                 celda.setText(String.valueOf(caracteres[n]));
                 this.celdas.add(celda);
             }
         }
-        revelaLetra(",");
+        /*revelaLetra(",");
         revelaLetra(".");
-        revelaLetra(":");
+        revelaLetra(":");*/
     }
 
 
@@ -129,10 +129,6 @@ public class Panel {
 
         this.fraseActual = Panel.frases.remove(rand).toUpperCase();
         this.pistaActual = Panel.pistas.remove(rand).toUpperCase();
-    }
-
-    public boolean esElFinal() {
-        return numLetrasReveladas == MAX_LETRAS;
     }
 
     public String getFraseActual() {
