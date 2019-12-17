@@ -15,7 +15,8 @@
         android:layout_marginRight="30dp"
         android:adjustViewBounds="true"
         android:cropToPadding="false"
-        android:src="@drawable/ruleta"
+        android:onClick="rotar"
+        android:src="@drawable/logo"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -24,15 +25,18 @@
 
     <Button
         android:id="@+id/bIniciar"
-        style="@style/Widget.AppCompat.Button.Colored"
+        style="@android:style/Widget.DeviceDefault.Button.Borderless"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="#08FFFFFF"
         android:onClick="iniciarJuego"
         android:padding="20sp"
+        android:text="Jugar"
+        android:textColor="#B7D984FF"
         android:textSize="30sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ruletaImagen"
-        android:text="Empezar a jugar" />
+        app:layout_constraintTop_toBottomOf="@+id/ruletaImagen" />
 </androidx.constraintlayout.widget.ConstraintLayout>
