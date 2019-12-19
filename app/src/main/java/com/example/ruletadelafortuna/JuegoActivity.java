@@ -287,8 +287,8 @@ public class JuegoActivity extends AppCompatActivity implements Animation.Animat
                         String nombreGranador = jugadores[posJugadorActual].getNombre();
 
                         new AlertDialog.Builder(this, android.R.style.Theme_Material_Dialog_Alert)
-                                .setTitle(nombreGranador+" ganaste la partida \uD83E\uDD73")
-                                .setMessage("¿Empezamos una nueva partida?")
+                                .setTitle(nombreGranador+", ganaste la partida \uD83E\uDD73")
+                                .setMessage("¿Empezamos una nueva?")
                                 .setPositiveButton("Sí :D", new DialogInterface.OnClickListener() {
                                     @Override
                                     public void onClick(DialogInterface dialog, int which) { finish(); }
@@ -333,7 +333,7 @@ public class JuegoActivity extends AppCompatActivity implements Animation.Animat
             intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL,
                     RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
             intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, Locale.getDefault());
-            intent.putExtra(RecognizerIntent.EXTRA_PROMPT, "Pide una letra");
+            intent.putExtra(RecognizerIntent.EXTRA_PROMPT, "Dime la frase");
             try {
                 startActivityForResult(intent, 3);
             } catch (ActivityNotFoundException a) {
